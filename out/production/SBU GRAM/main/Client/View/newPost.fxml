@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="41.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" promptText="title" style="-fx-background-color: #ffffff;" />
+      <Region prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #4B3F72;" />
+      <Label layoutX="164.0" layoutY="14.0" text="New Post" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="21.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/back2.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="150.0" layoutY="359.0" prefHeight="43.0" prefWidth="100.0" ripplerFill="#8c12c9" style="-fx-background-color: #4B3F72;" text="publish" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="290.0" layoutY="104.0" prefHeight="25.0" prefWidth="69.0" ripplerFill="#8c12c9" style="-fx-background-color: #4B3F72;" text="clear" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <TextArea layoutX="40.0" layoutY="141.0" prefHeight="200.0" prefWidth="328.0" promptText="descriptions..." />
+      <JFXButton buttonType="RAISED" layoutX="200.0" layoutY="104.0" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #4B3F72;" text="add image" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="10.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>
