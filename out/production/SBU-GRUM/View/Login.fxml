@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+   <children>
+      <ImageView fitHeight="140.0" fitWidth="174.0" layoutX="104.0" layoutY="36.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU-GRUM/images/logo1.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Login_usernameField" layoutX="97.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Uername" style="-fx-background-color: #4B3F72;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="WrongPassword" layoutX="221.0" layoutY="339.0" text="Wrong Password!" textFill="#d1cccc" visible="false">
+         <font>
+            <Font name="Ebrima" size="10.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordField" layoutX="99.0" layoutY="303.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: #4B3F72;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <TextField fx:id="Password_Visible" layoutX="99.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: #4B3F72;" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Region layoutY="550.0" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #4B3F72;" />
+      <Label layoutX="82.0" layoutY="569.0" text="Dont have an account?" textFill="#d1cccc">
+         <font>
+            <Font name="Ebrima" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="Login_to_SignUp" layoutX="229.0" layoutY="572.0" onMouseClicked="#signUp" text="Sign Up" textFill="#d1cccc">
+         <font>
+            <Font name="Ebrima Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="ForgetPassword_Field" layoutX="148.0" layoutY="367.0" prefHeight="17.0" prefWidth="101.0" text="Forget password?" textFill="#d1cccc">
+         <font>
+            <Font name="Ebrima" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="46.0" fitWidth="37.0" layoutX="60.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU-GRUM/images/user.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="66.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU-GRUM/images/password.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="150.0" layoutY="179.0" text="Welcome Back" textFill="#d1cccc">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <CheckBox layoutX="274.0" layoutY="308.0" mnemonicParsing="false" onAction="#ShowPassword" textFill="WHITE" />
+      <JFXButton buttonType="RAISED" layoutX="91.0" layoutY="386.0" onAction="#Login" prefHeight="30.0" prefWidth="217.0" style="-fx-background-color: #4B3F72;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>

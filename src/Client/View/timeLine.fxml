@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="620.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.timelineController">
+  <items>
+    <AnchorPane prefHeight="372.0" prefWidth="420.0">
+         <children>
+            <ListView fx:id="PostList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#showPost" prefHeight="618.0" prefWidth="420.0" />
+         </children>
+      </AnchorPane>
+  </items>
+</SplitPane>
