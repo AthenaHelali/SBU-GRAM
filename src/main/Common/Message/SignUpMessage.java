@@ -1,23 +1,23 @@
 package main.Common.Message;
 
-import main.Common.Profile;
+import main.Common.Account;
 
 import java.util.Map;
 
 public class SignUpMessage implements Message {
     public static final long serialVersionUID = 82345678L;
-    Profile profile;
+    Account account;
 
-    public SignUpMessage(Profile profile) {
-        this.profile = profile;
+    public SignUpMessage(Account account) {
+        this.account = account;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Account getProfile() {
+        return account;
     }
 
-    public void Handle(Map<String, Profile> profileMap) {
-        profileMap.put(profile.getUsername(),profile);
+    public void Handle(Map<String, Account> profileMap) {
+        profileMap.put(account.getUsername(), account);
 
     }
 }

@@ -1,16 +1,18 @@
 package main.Common;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Like {
-    private ArrayList<Profile> WhoLiked;
+public class Like implements Serializable {
+    private ArrayList<Account> WhoLiked;
     private int numberOfLikes;
-    public Like(){
-        this.numberOfLikes=0;
-        WhoLiked=new ArrayList<>();
+
+    public Like() {
+        this.numberOfLikes = 0;
+        WhoLiked = new ArrayList<>();
     }
 
-    public ArrayList<Profile> getWhoLiked() {
+    public ArrayList<Account> getWhoLiked() {
         return WhoLiked;
     }
 
@@ -18,14 +20,13 @@ public class Like {
         return numberOfLikes;
     }
 
-    public void LikePost() {
-        this.numberOfLikes ++;
-    }
-    public void disLikePost() {
-        this.numberOfLikes--;
+    public void LikePost(Account account) {
+        this.numberOfLikes++;
+        WhoLiked.add(account);
     }
 
-    public void AddWhoLiked(Profile profile) {
-        WhoLiked.add(profile);
+    public void disLikePost(Account account) {
+        this.numberOfLikes--;
+        WhoLiked.remove(account);
     }
 }

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Client.Controller.newPostController">
    <children>
-      <TextField layoutX="41.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" promptText="title" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="title" layoutX="41.0" layoutY="104.0" prefHeight="25.0" prefWidth="138.0" promptText="title" style="-fx-background-color: #ffffff;" />
       <Region prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #4B3F72;" />
       <Label layoutX="164.0" layoutY="14.0" text="New Post" textFill="WHITE">
          <font>
@@ -24,21 +24,28 @@
             <Image url="@../../images/back2.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="150.0" layoutY="359.0" prefHeight="43.0" prefWidth="100.0" ripplerFill="#8c12c9" style="-fx-background-color: #4B3F72;" text="publish" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="150.0" layoutY="477.0" onAction="#Share" prefHeight="43.0" prefWidth="100.0" ripplerFill="#8c12c9" style="-fx-background-color: #4B3F72;" text="share" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="290.0" layoutY="104.0" prefHeight="25.0" prefWidth="69.0" ripplerFill="#8c12c9" style="-fx-background-color: #4B3F72;" text="clear" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="290.0" layoutY="104.0" onAction="#Clear" prefHeight="25.0" prefWidth="69.0" ripplerFill="#8c12c9" style="-fx-background-color: #4B3F72;" text="clear" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXButton>
-      <TextArea layoutX="40.0" layoutY="141.0" prefHeight="200.0" prefWidth="328.0" promptText="descriptions..." />
-      <JFXButton buttonType="RAISED" layoutX="200.0" layoutY="104.0" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #4B3F72;" text="add image" textFill="WHITE">
+      <TextArea fx:id="caption" layoutX="36.0" layoutY="181.0" prefHeight="268.0" prefWidth="328.0" promptText="Write a caption..." />
+      <JFXButton buttonType="RAISED" layoutX="200.0" layoutY="104.0" onAction="#addImage" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #4B3F72;" text="add image" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="10.0" />
          </font>
       </JFXButton>
+      <ImageView fx:id="PostImage" fitHeight="127.0" fitWidth="144.0" layoutX="41.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#ToTimeLine" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/back.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="DuplicateTitle" layoutX="41.0" layoutY="137.0" text="Duplicate title!" textFill="WHITE" visible="false" />
    </children>
 </Pane>

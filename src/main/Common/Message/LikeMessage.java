@@ -1,14 +1,14 @@
 package main.Common.Message;
 
+import main.Common.Account;
 import main.Common.Post;
-import main.Common.Profile;
 
 public class LikeMessage implements Message{
     public static final long serialVersionUID = 22345678L;
-    public Profile WhoLiked;
+    public Account WhoLiked;
     public Post post;
 
-    public LikeMessage(Profile whoLiked, Post post) {
+    public LikeMessage(Account whoLiked, Post post) {
         WhoLiked = whoLiked;
         this.post = post;
     }

@@ -5,66 +5,58 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Client.Controller.SignUpController">
    <children>
-      <TextField fx:id="Login_usernameField" layoutX="87.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Uername" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="usernameField" layoutX="86.0" layoutY="246.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Uername" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="Login_passwordField" layoutX="85.0" layoutY="260.0" prefHeight="31.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: #4B3F72;" />
-      <TextField fx:id="Login_passwordShow" layoutX="85.0" layoutY="261.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: #4B3F72;">
+      <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="340.0" prefHeight="31.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: #4B3F72;" />
+      <TextField fx:id="PasswordShow" layoutX="84.0" layoutY="341.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Password" style="-fx-background-color: #4B3F72;" visible="false">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <CheckBox fx:id="showPassword_checkbox" layoutX="295.0" layoutY="269.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
+      <CheckBox fx:id="showPassword_checkbox" layoutX="294.0" layoutY="349.0" mnemonicParsing="false" onAction="#showPass" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
          <font>
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="Login_usernameField1" alignment="CENTER" layoutX="87.0" layoutY="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" promptText="First Name" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="Firstname" alignment="CENTER" layoutX="86.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" promptText="First Name" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="Login_usernameField11" alignment="CENTER" layoutX="213.0" layoutY="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" promptText="Last Name" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="Lastname" alignment="CENTER" layoutX="212.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" promptText="Last Name" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="12.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="Login_passwordField1" layoutX="86.0" layoutY="309.0" prefHeight="31.0" prefWidth="230.0" promptText="Confirm Password" style="-fx-background-color: #4B3F72;" />
-      <TextField fx:id="Login_passwordShow1" layoutX="86.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText=" Confirm Password" style="-fx-background-color: #4B3F72;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <CheckBox fx:id="showPassword_checkbox1" layoutX="295.0" layoutY="318.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
+      <PasswordField fx:id="ConfirmPasswordField" layoutX="85.0" layoutY="389.0" prefHeight="31.0" prefWidth="230.0" promptText="Confirm Password" style="-fx-background-color: #4B3F72;" />
+      <TextField fx:id="ConfirmPasswordShow" layoutX="85.0" layoutY="390.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText=" Confirm Password" style="-fx-background-color: #4B3F72;" visible="false" />
+      <CheckBox fx:id="showConfirmPassword_checkbox" layoutX="294.0" layoutY="398.0" mnemonicParsing="false" onAction="#showConfPass" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
          <font>
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="Login_usernameField2" layoutX="87.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="E-mail" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="Email" layoutX="86.0" layoutY="294.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="E-mail" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="156.0" layoutY="60.0" text="Sign Up" textFill="WHITE">
-         <font>
-            <Font name="Arial Italic" size="22.0" />
-         </font>
-      </Label>
-      <Label fx:id="ForgetPassword_Field" layoutX="122.0" layoutY="445.0" text="by creating an account you agree to our" textFill="#d1cccc">
+      <Label fx:id="ForgetPassword_Field" layoutX="114.0" layoutY="491.0" text="by creating an account you agree to our" textFill="#d1cccc">
          <font>
             <Font name="Arial Narrow" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="ForgetPassword_Field1" layoutX="130.0" layoutY="460.0" text="conditions of use and privacy notice." textFill="#d1cccc">
+      <Label fx:id="ForgetPassword_Field1" layoutX="122.0" layoutY="506.0" text="conditions of use and privacy notice." textFill="#d1cccc">
          <font>
             <Font name="Arial Narrow" size="11.0" />
          </font>
@@ -80,10 +72,16 @@
             <Font name="Ebrima Bold" size="14.0" />
          </font>
       </Label>
-      <JFXButton fx:id="Signup_botton" buttonType="RAISED" layoutX="79.0" layoutY="402.0" prefHeight="40.0" prefWidth="257.0" style="-fx-background-color: #4B3F72;" text="sign up" textFill="WHITE">
+      <JFXButton fx:id="Signup_botton" buttonType="RAISED" layoutX="88.0" layoutY="447.0" onAction="#SignUp" prefHeight="40.0" prefWidth="230.0" style="-fx-background-color: #4B3F72;" text="sign up" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
+      <ImageView fx:id="image" fitHeight="111.0" fitWidth="116.0" layoutX="135.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="chooseImage" fitHeight="111.0" fitWidth="158.0" layoutX="145.0" layoutY="53.0" onMouseClicked="#SetProfileImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/image.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

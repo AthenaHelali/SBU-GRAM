@@ -23,9 +23,9 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="WrongPassword" layoutX="221.0" layoutY="339.0" text="Wrong Password!" textFill="#d1cccc" visible="false">
+      <Label fx:id="WrongPassword" layoutX="303.0" layoutY="319.0" text="Wrong Password!" textFill="#d1cccc" visible="false">
          <font>
-            <Font name="Ebrima" size="10.0" />
+            <Font name="Ebrima" size="8.0" />
          </font>
       </Label>
       <PasswordField fx:id="passwordField" layoutX="99.0" layoutY="303.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: #4B3F72;">
@@ -75,5 +75,10 @@
             <Font name="System Italic" size="18.0" />
          </font>
       </JFXButton>
+      <Label fx:id="WrongUsername" layoutX="299.0" layoutY="258.0" prefHeight="15.0" prefWidth="69.0" text="wrong username!" textFill="#d1cccc" visible="false">
+         <font>
+            <Font name="Ebrima" size="8.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

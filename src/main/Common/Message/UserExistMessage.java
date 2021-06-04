@@ -1,6 +1,6 @@
 package main.Common.Message;
 
-import main.Common.Profile;
+import main.Common.Account;
 
 import java.util.Map;
 
@@ -10,10 +10,9 @@ public class UserExistMessage implements Message{
     public UserExistMessage(String username) {
         Username = username;
     }
-    public boolean Handle(Map<String, Profile> profile) {
-      if (profile.containsKey(Username))
-          return true;
-      else return false;
-
+    public boolean Handle(Map<String, Account> account) {
+        if(account.size()==0)
+            return false;
+      else return  account.containsKey(Username);
     }
 }

@@ -1,4 +1,6 @@
 package main.Common.Message;
 
-public interface Message {
+import java.io.Serializable;
+
+public interface Message extends Serializable {
 }

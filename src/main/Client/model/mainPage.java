@@ -1,10 +1,11 @@
 package main.Client.model;
-import main.Common.Profile;
+import main.Client.ToServer;
+import main.Common.Account;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-    public static Profile CerrentUser;
+public class mainPage extends Application {
+    public static Account cerrentAccount;
     @Override
     public void start(Stage primaryStage) throws Exception{
         PageLoader.initStage(primaryStage);
@@ -13,6 +14,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        boolean connection=ToServer.connectToServer();
         launch(args);
     }
 }

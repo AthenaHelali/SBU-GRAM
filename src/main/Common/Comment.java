@@ -1,4 +1,6 @@
 package main.Common;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
 }

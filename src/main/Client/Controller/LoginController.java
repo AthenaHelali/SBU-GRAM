@@ -1,9 +1,14 @@
 package main.Client.Controller;
 
+import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import main.Client.model.mainPage;
+import main.Common.Message.AnswerMessage;
+import main.Common.Message.LoginMessage;
+import main.Common.Message.UserExistMessage;
 
 import java.io.IOException;
 
@@ -16,23 +21,34 @@ public class LoginController {
     public TextField Password_Visible;
     public Label Login_to_SignUp;
     public Label ForgetPassword_Field;
+    public Label WrongUsername;
 
     public void Login(ActionEvent actionEvent) throws IOException {
-        String Username=Login_usernameField.getText();
-        String Password;
-        if (passwordField.isVisible())
-            Password=passwordField.getText();
-        else
-            Password=Password_Visible.getText();
-        if(Username.equalsIgnoreCase("Ali")&&Password.equalsIgnoreCase("alavi")){
-            new PageLoader().load("timeLine");
-            WrongPassword.setVisible(false);
+        String Username = Login_usernameField.getText();
+        if (!ToServer.sendToServer(new UserExistMessage(Username)).getValue()) {
+            if(!WrongUsername.isVisible())
+            WrongUsername.setVisible(true);
         }
-        else{
-            WrongPassword.setVisible(true);
+        else {
+            if(WrongUsername.isVisible())
+                WrongUsername.setVisible(false);
+        }
+            String Password;
+            if (passwordField.isVisible())
+                Password = passwordField.getText();
+            else
+                Password = Password_Visible.getText();
+            AnswerMessage answerMessage=ToServer.sendToServer(new LoginMessage(Username,Password));
+            if (answerMessage.getValue()) {
+                mainPage.cerrentAccount =answerMessage.getProfile();
+                new PageLoader().load("timeLine");
+                WrongPassword.setVisible(false);
+            } else {
+                WrongPassword.setVisible(true);
 
-        }
+            }
     }
+
 
     public void ShowPassword(ActionEvent actionEvent) {
         if(!Password_Visible.isVisible()){

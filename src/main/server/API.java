@@ -1,31 +1,35 @@
 package main.server;
 
+import main.Common.Account;
 import main.Common.Post;
-import main.Common.Profile;
-
-import java.util.stream.Collectors;
 
 public class API {
     //client side decides what to do according to return value
-    public static boolean Like(Post post, Profile WhoLiked){
-        Post temp;
-        temp=Server.AllProfiles.get(post.getWriterUsername()).getMyPosts().stream().filter(a->a.getTitle().equals(post.getTitle())).collect(Collectors.toList()).get(0);
+    public static boolean Like(Post post, Account WhoLiked){
+        Post temp=null;
+       for (Post posts:Server.AllProfiles.get(post.getWriterUsername()).getMyPosts()){
+           if(posts.getTitle().equals(post.getTitle())){
+               temp=posts;
+               break;
+           }
+       }
         if(temp.getLike().getWhoLiked().contains(WhoLiked)){
-            temp.getLike().getWhoLiked().remove(WhoLiked);
-            temp.getLike().disLikePost();
+            temp.getLike().disLikePost(WhoLiked);
             WhoLiked.RemoveYouLiked(temp);
             DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(post.getWriterUsername()));
             DataBase.getDataBase().UpdateProfile(WhoLiked);
             return false;
         }
         else{
-            temp.getLike().LikePost();
-            temp.getLike().AddWhoLiked(WhoLiked);
+            temp.getLike().LikePost(WhoLiked);
             WhoLiked.addYouLiked(temp);
             DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(post.getWriterUsername()));
             DataBase.getDataBase().UpdateProfile(WhoLiked);
             return true;
         }
 
+    }
+    public static void NewPost(Post post){
+        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(post.getWriterUsername()));
     }
 }

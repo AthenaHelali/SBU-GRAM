@@ -1,6 +1,7 @@
 package main.server;
 
-import main.Common.Profile;
+import main.Common.Account;
+
 import java.io.*;
 import java.util.Formatter;
 import java.util.HashSet;
@@ -10,15 +11,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DataBase {
     private final String File_SUFFIX = ".txt";
-    private final String File_PREFIX = ".txt";
     Set<String> Username = new HashSet<>();
     private String ProfileDirectory;
     private ObjectOutputStream objectOutputStream = null;
     private ObjectInputStream objectInputStream = null;
-    File usernamesDir = new File("src/main.Client.server/Usernames.txt");
+    File usernamesDir= new File("Usernames.txt");
+
     Scanner scanner;
+
     //singletone class
-    private DataBase() {}
+    private DataBase() {
+    }
 
     private static DataBase dataBase = new DataBase();
 
@@ -27,6 +30,14 @@ public class DataBase {
     }
 
     public void initMap() {
+
+        try {
+            if (!new File("Usernames.txt").exists()) {
+                usernamesDir.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Server.AllProfiles = new ConcurrentHashMap<>();
         try {
             Scanner scanner = new Scanner(usernamesDir);
@@ -34,14 +45,15 @@ public class DataBase {
                 String string = scanner.nextLine().trim();
                 Username.add(string);
             }
-            //read profile
+            //read account
             for (String string : Username) {
                 Server.AllUsernames.add(string);
-                ProfileDirectory = File_PREFIX + string + File_SUFFIX;
+                ProfileDirectory = string + File_SUFFIX;
                 objectInputStream = new ObjectInputStream(new FileInputStream(ProfileDirectory));
-                Profile profile = (Profile) objectInputStream.readObject();
-                Server.AllProfiles.put(string, profile);
+                Account account = (Account) objectInputStream.readObject();
+                Server.AllProfiles.put(string, account);
             }
+            scanner.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -50,32 +62,40 @@ public class DataBase {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("initialization done");
     }
-//Save new Profile in new txt file
-    public synchronized void SaveProfile(Profile profile) {
+
+    //Save new Profile in new txt file
+    public synchronized void SaveProfile(Account account) {
         try {
-            ProfileDirectory = File_PREFIX + profile.getUsername() + File_SUFFIX;
-            Formatter formatter = new Formatter(ProfileDirectory);
-            formatter.format(profile.getUsername() + "\n");
+            FileWriter fileWriter=new FileWriter(usernamesDir,true);
+            Formatter formatter = new Formatter(fileWriter);
+            formatter.format(account.getUsername() + "\n");
+            formatter.close();
+            fileWriter.close();
+            ProfileDirectory = account.getUsername() + File_SUFFIX;
+            File file=new File(ProfileDirectory);
+            file.createNewFile();
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(ProfileDirectory));
-            objectOutputStream.writeObject(profile);
+            objectOutputStream.writeObject(account);
             objectOutputStream.close();
-            Server.AllUsernames.add(profile.getUsername());
-            Server.AllProfiles.put(profile.getUsername(),profile);
+            Server.AllUsernames.add(account.getUsername());
+            Server.AllProfiles.put(account.getUsername(), account);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-//Rewrite profile
-    public synchronized void UpdateProfile(Profile profile) {
-        ProfileDirectory = File_PREFIX + profile.getUsername() + File_SUFFIX;
+
+    //Rewrite account
+    public synchronized void UpdateProfile(Account account) {
+        ProfileDirectory = account.getUsername() + File_SUFFIX;
         try {
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(ProfileDirectory));
-            objectOutputStream.writeObject(profile);
+            objectOutputStream.writeObject(account);
             objectOutputStream.close();
-            Server.AllProfiles.replace(profile.getUsername(), profile);
+            Server.AllProfiles.replace(account.getUsername(), account);
         } catch (IOException e) {
             e.printStackTrace();
         }

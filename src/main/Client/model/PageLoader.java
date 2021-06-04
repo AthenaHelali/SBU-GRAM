@@ -24,7 +24,7 @@ public class PageLoader {
         stage.getIcons().add(new Image(Paths.get("images\\logo2.png").toUri().toString()));
     }
     public Parent LoadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader=new FXMLLoader(Main.class.getResource("/main/Client/View/" +fxml+".fxml"));
+        FXMLLoader fxmlLoader=new FXMLLoader(mainPage.class.getResource("/main/Client/View/" +fxml+".fxml"));
         return fxmlLoader.load();
     }
     public void load(String url)throws IOException{
@@ -33,7 +33,7 @@ public class PageLoader {
         stage.show();
     }
     public void load(String fxml, Object controller) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/main/Client/View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(mainPage.class.getResource("/main/Client/View/" + fxml + ".fxml"));
         fxmlLoader.setController(controller);
         fxmlLoader.load();
     }
