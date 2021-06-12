@@ -5,7 +5,7 @@ import main.Common.Post;
 
 public class API {
     //client side decides what to do according to return value
-    public static boolean Like(Post post, Account WhoLiked){
+    public static synchronized boolean Like(Post post, Account WhoLiked){
         Post temp=null;
        for (Post posts:Server.AllProfiles.get(post.getWriterUsername()).getMyPosts()){
            if(posts.getTitle().equals(post.getTitle())){
@@ -29,7 +29,11 @@ public class API {
         }
 
     }
-    public static void NewPost(Post post){
-        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(post.getWriterUsername()));
+    public static synchronized Account Follow(Account account,String username){
+        Server.AllProfiles.get(username).setFollowers(account);
+        account.Follow(Server.AllProfiles.get(username));
+        DataBase.getDataBase().UpdateProfile(account);
+        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(username));
+        return Server.AllProfiles.get(username);
     }
 }

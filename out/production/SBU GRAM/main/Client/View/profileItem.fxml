@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root2" prefHeight="130.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="ProfileImage2" fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/userr.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="username2" layoutX="16.0" layoutY="87.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="bio2" layoutX="104.0" layoutY="65.0" text="bio..." textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="firstname2" layoutX="104.0" layoutY="39.0" text="First name" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lastname2" layoutX="173.0" layoutY="39.0" text="Last name" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="location2" layoutX="243.0" layoutY="40.0" text="location" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="Follow" layoutX="320.0" layoutY="14.0" onAction="#Follow" prefHeight="10.0" prefWidth="66.0" style="-fx-background-color: #4B3F72;" text="Follow" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="following" layoutX="320.0" layoutY="14.0" prefHeight="10.0" prefWidth="66.0" style="-fx-background-color: #1db937;" text="Following" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

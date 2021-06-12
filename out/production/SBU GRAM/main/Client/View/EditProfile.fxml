@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Client.Controller.EditProfileController">
+   <children>
+      <ImageView fx:id="defaultProfileImage" fitHeight="90.0" fitWidth="90.0" layoutX="155.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/userr.png" />
+         </image>
+      </ImageView>
+      <Region layoutY="-1.0" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #4B3F72;" />
+      <Label layoutX="22.0" layoutY="16.0" onMouseClicked="#Cancel" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="15.0" onMouseClicked="#Done" text="Done" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="160.0" layoutY="10.0" text="Edit Profile" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="144.0" layoutY="154.0" onMouseClicked="#changeProfilePhoto" text="Change Profile Photo" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="190.0" layoutX="177.0" layoutY="190.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
+      <TextField fx:id="FirstName" layoutX="118.0" layoutY="205.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="Lastname" layoutX="118.0" layoutY="261.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="email" layoutX="118.0" layoutY="310.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="password" layoutX="118.0" layoutY="452.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="Location" layoutX="118.0" layoutY="358.0" prefHeight="26.0" prefWidth="180.0" />
+      <TextField fx:id="bio" layoutX="118.0" layoutY="406.0" prefHeight="26.0" prefWidth="180.0" />
+      <Label layoutX="47.0" layoutY="209.0" text="First Name" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="190.0" layoutX="178.0" layoutY="246.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
+      <Line endX="190.0" layoutX="177.0" layoutY="300.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
+      <Label layoutX="45.0" layoutY="264.0" text="Last name" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="190.0" layoutX="177.0" layoutY="347.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
+      <Label layoutX="45.0" layoutY="314.0" text="Email" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="190.0" layoutX="177.0" layoutY="395.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
+      <Label layoutX="42.0" layoutY="362.0" text="Location" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="408.0" text="Bio" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="190.0" layoutX="177.0" layoutY="442.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
+      <Label layoutX="43.0" layoutY="456.0" text="password" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="ProfileImage" fitHeight="90.0" fitWidth="90.0" layoutX="155.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+   </children>
+</AnchorPane>

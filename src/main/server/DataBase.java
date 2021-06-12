@@ -90,7 +90,7 @@ public class DataBase {
 
     //Rewrite account
     public synchronized void UpdateProfile(Account account) {
-        ProfileDirectory = account.getUsername() + File_SUFFIX;
+        ProfileDirectory = account.getUsername()+File_SUFFIX;
         try {
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(ProfileDirectory));
             objectOutputStream.writeObject(account);

@@ -1,9 +1,11 @@
 package main.server;
 
+import main.Common.Account;
 import main.Common.Message.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ClientHandler implements Runnable {
@@ -37,7 +39,7 @@ public class ClientHandler implements Runnable {
                     answerMessage = new AnswerMessage();
                     LoginMessage loginMessage = (LoginMessage) receivedMessage;
                     answerMessage.setValue(loginMessage.CheckPassword(Server.AllProfiles));
-                    answerMessage.setProfile(loginMessage.Handle(Server.AllProfiles));
+                    answerMessage.setAccount(loginMessage.Handle(Server.AllProfiles));
                     OutPut.writeObject(answerMessage);
                     System.out.println("[Login]" + "[" + loginMessage.getUsername() + "]");
                 } else if (receivedMessage instanceof SignUpMessage) {
@@ -56,9 +58,41 @@ public class ClientHandler implements Runnable {
                 } else if (receivedMessage instanceof NewPostMessage) {
                     answerMessage = new AnswerMessage();
                     NewPostMessage newPostMessage = (NewPostMessage) receivedMessage;
+                    Server.AllProfiles.get(newPostMessage.getNewPost().getWriterUsername()).NewPost(newPostMessage.getNewPost());
+                    DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(newPostMessage.getNewPost().getWriterUsername()));
                     OutPut.writeObject(answerMessage);
-                    API.NewPost(newPostMessage.getNewPost());
 
+                }else if(receivedMessage instanceof LogOutMessage){
+                    IsOnline=false;
+                    answerMessage=new AnswerMessage();
+                    answerMessage.setValue(true);
+                    OutPut.writeObject(answerMessage);
+                }
+                else if(receivedMessage instanceof UpdateProfileMessage){
+                    answerMessage=new AnswerMessage();
+                    UpdateProfileMessage updateProfileMessage=(UpdateProfileMessage)receivedMessage;
+                    Server.AllProfiles.replace(updateProfileMessage.getAccount().getUsername(),updateProfileMessage.getAccount());
+                    DataBase.getDataBase().UpdateProfile(updateProfileMessage.getAccount());
+                    answerMessage.setValue(true);
+                    OutPut.writeObject(answerMessage);
+                }
+                else if(receivedMessage instanceof GetAllProfilesMessage){
+                    answerMessage=new AnswerMessage();
+                    GetAllProfilesMessage getAllProfilesMessage=(GetAllProfilesMessage) receivedMessage;
+                    answerMessage.setOthersAccounts(getAllProfilesMessage.Handle(new ArrayList<Account>(Server.AllProfiles.values())));
+                    OutPut.writeObject(answerMessage);
+                }
+                else if(receivedMessage instanceof FollowMessage){
+                    answerMessage=new AnswerMessage();
+                    FollowMessage followMessage=(FollowMessage)receivedMessage;
+                    answerMessage.setAccount(API.Follow(followMessage.getFollwer(),followMessage.getFollowedUser()));
+                    OutPut.writeObject(answerMessage);
+                }
+                else if(receivedMessage instanceof timelinePostsMessage){
+                    answerMessage=new AnswerMessage();
+                    timelinePostsMessage timelinePostsMessage=(timelinePostsMessage) receivedMessage;
+                    answerMessage.setPosts(timelinePostsMessage.Handle(new ArrayList<>(Server.AllProfiles.values())));
+                    OutPut.writeObject(answerMessage);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

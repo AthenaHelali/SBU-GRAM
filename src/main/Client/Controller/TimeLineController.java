@@ -1,13 +1,16 @@
 package main.Client.Controller;
+
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
 import main.Common.Post;
+import main.Common.Message.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -17,25 +20,27 @@ public class TimeLineController {
     public ListView<Post> postList;
     public ImageView ProfileImage;
     public Label Username;
-    ArrayList<Post> posts = new ArrayList<>();
+    public ImageView defultProfileImage;
+    private ArrayList<Post> posts = ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount)).getPosts();
     Post currentPost = new Post();
 
     @FXML
     public void initialize() {
-        ProfileImage.setImage(new Image(new ByteArrayInputStream(mainPage.cerrentAccount.getProfileImage())));
-        Username.setText(mainPage.cerrentAccount.getUsername());
-        //initialize posts array list to be shown in list view
-        //TODO
-        //show the post array in list view
+        if (mainPage.currentAccount.getProfileImage() != null) {
+            ProfileImage.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
+            ProfileImage.setVisible(true);
+            defultProfileImage.setVisible(false);
+        }
+        Username.setText(mainPage.currentAccount.getUsername());
         postList.setItems(FXCollections.observableArrayList(posts));
-
-        //customize each cell of postList with new graphic object PostItem
         postList.setCellFactory(postList -> new PostItem());
     }
 
 
     //this function is usable for uncustomized_cell listview of strings
     public void showPost(MouseEvent mouseEvent) {
+        Post post = postList.getSelectionModel().getSelectedItem();
+
 
     }
 

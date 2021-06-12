@@ -30,23 +30,23 @@ public class LoginController {
             WrongUsername.setVisible(true);
         }
         else {
-            if(WrongUsername.isVisible())
+            if (WrongUsername.isVisible())
                 WrongUsername.setVisible(false);
-        }
             String Password;
             if (passwordField.isVisible())
                 Password = passwordField.getText();
             else
                 Password = Password_Visible.getText();
-            AnswerMessage answerMessage=ToServer.sendToServer(new LoginMessage(Username,Password));
+            AnswerMessage answerMessage = ToServer.sendToServer(new LoginMessage(Username, Password));
             if (answerMessage.getValue()) {
-                mainPage.cerrentAccount =answerMessage.getProfile();
+                mainPage.currentAccount = answerMessage.getAccount();
                 new PageLoader().load("timeLine");
                 WrongPassword.setVisible(false);
             } else {
                 WrongPassword.setVisible(true);
 
             }
+        }
     }
 
 

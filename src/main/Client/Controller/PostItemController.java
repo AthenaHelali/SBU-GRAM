@@ -1,5 +1,6 @@
 package main.Client.Controller;
 
+import com.jfoenix.controls.JFXTextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import main.Client.ToServer;
@@ -21,6 +22,11 @@ public class PostItemController {
     public ImageView beforLike;
     public ImageView afterLike;
     public Label LikesNumber;
+    public Label commentsNumber;
+    public Label repotsNumber;
+    public JFXTextArea descriptions;
+    public ImageView PostImage;
+    public ImageView defaultPostImage;
     Post post;
 
     //each list item will have its exclusive controller in runtime so we set the controller as we load the fxml
@@ -31,10 +37,18 @@ public class PostItemController {
 
     //this anchor pane is returned to be set as the list view item
     public AnchorPane init() {
+        if(post.getWriterImage()!=null)
         writerImage.setImage(new Image(new ByteArrayInputStream(post.getWriterImage())));
         username.setText(post.getWriterUsername());
         title.setText(post.getTitle());
-
+        if(post.getPostImage()!=null){
+            PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostImage())));
+            defaultPostImage.setVisible(false);
+            PostImage.setVisible(true);
+        }
+        descriptions.setText(post.getDescription());
+        LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
+        commentsNumber.setText(String.valueOf(post.getComments().size()));
         return root;
     }
 
@@ -43,20 +57,20 @@ public class PostItemController {
     }
 
     public void Like(MouseEvent mouseEvent) {
-        if(ToServer.sendToServer(new LikeMessage(mainPage.cerrentAccount,post)).getValue()){
+        if(ToServer.sendToServer(new LikeMessage(mainPage.currentAccount,post)).getValue()){
             beforLike.setVisible(false);
             afterLike.setVisible(true);
-            post.getLike().LikePost(mainPage.cerrentAccount);
+            post.getLike().LikePost(mainPage.currentAccount);
             LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
-            mainPage.cerrentAccount.addYouLiked(post);
+            mainPage.currentAccount.addYouLiked(post);
 
         }
         else {
             beforLike.setVisible(true);
             afterLike.setVisible(false);
-            post.getLike().disLikePost(mainPage.cerrentAccount);
+            post.getLike().disLikePost(mainPage.currentAccount);
             LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
-            mainPage.cerrentAccount.RemoveYouLiked(post);
+            mainPage.currentAccount.RemoveYouLiked(post);
 
 
         }
@@ -66,6 +80,9 @@ public class PostItemController {
     }
 
     public void repost(MouseEvent mouseEvent) {
+    }
+
+    public void ToWriterPage(MouseEvent mouseEvent) {
     }
     /*
     you can also add on mouse click for like and repost image 

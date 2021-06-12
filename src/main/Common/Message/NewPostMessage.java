@@ -14,7 +14,6 @@ public class NewPostMessage implements Message{
     public NewPostMessage(Post newPost) {
         this.newPost = newPost;
     }
-
     public void setValue(boolean value) {
         this.value = value;
     }

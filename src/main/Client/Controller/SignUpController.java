@@ -83,9 +83,10 @@ public class SignUpController {
 
         if (!ToServer.sendToServer(new UserExistMessage(Username)).getValue()) {
             Account account = new Account(firstname, lastname, Username, Password, email);
+            if (profileImage!=null)
             account.setProfileImage(profileImage);
             if (ToServer.sendToServer(new SignUpMessage(account)).getValue()) {
-                mainPage.cerrentAccount = account;
+                mainPage.currentAccount = account;
                 try {
                     new PageLoader().load("timeLine");
                 } catch (IOException e) {

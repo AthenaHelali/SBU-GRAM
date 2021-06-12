@@ -14,6 +14,8 @@ public class Account implements Serializable {
     private String LastName;
     private String Username;
     private String password;
+    private String location;
+    private String bio;
     private String Email;
     private ArrayList<Post> MyPosts;
     private ArrayList<Account> Following;
@@ -37,10 +39,39 @@ public class Account implements Serializable {
         Username = username;
         MyPosts = new ArrayList<>();
         Following = new ArrayList<>();
-        Followers = new ArrayList<>();
+        Followers=new ArrayList<>();
         YouLiked = new ArrayList<>();
         this.password = password;
         Email = email;
+        profileImage=null;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setFollowers(Account account) {
+        Followers.add(account);
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public ArrayList<Account> getFollowers() {
+        return Followers;
+    }
+
+    public Map<Account, List<Message>> getDirectChat() {
+        return directChat;
     }
 
     public ArrayList<Post> getYouLiked() {
@@ -98,7 +129,7 @@ public class Account implements Serializable {
         return MyPosts;
     }
 
-    public List<Account> getFollowing() {
+    public ArrayList<Account> getFollowing() {
         return Following;
     }
 

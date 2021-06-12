@@ -1,6 +1,7 @@
 package main.Common;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Post implements Serializable {
@@ -8,10 +9,10 @@ public class Post implements Serializable {
     private String WriterUsername;
     private Like like;
     private int repostNum;
-    private List<Comment>comments;
+    private ArrayList<Comment> comments;
     private String description;
     private byte[]writerImage;
-    private byte[]PostImage;
+    private byte[]PostImage=null;
     public Post(){}
 
     public Post(String title, String writerUsername, String description) {
@@ -19,6 +20,7 @@ public class Post implements Serializable {
         this.title = title;
         WriterUsername = writerUsername;
         this.description = description;
+        comments=new ArrayList<>();
     }
 
     public byte[] getPostImage() {
@@ -69,7 +71,11 @@ public class Post implements Serializable {
         return repostNum;
     }
 
-    public List<Comment> getComments() {
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public ArrayList<Comment> getComments() {
         return comments;
     }
 

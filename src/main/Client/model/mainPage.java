@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class mainPage extends Application {
-    public static Account cerrentAccount;
+    public static Account currentAccount;
     @Override
     public void start(Stage primaryStage) throws Exception{
         PageLoader.initStage(primaryStage);
