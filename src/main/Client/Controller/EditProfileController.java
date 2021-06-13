@@ -59,15 +59,13 @@ public class EditProfileController {
         mainPage.currentAccount.setBio(bio.getText());
         mainPage.currentAccount.setLocation(Location.getText());
         mainPage.currentAccount.setProfileImage(image);
-        if(ToServer.sendToServer(new UpdateProfileMessage(mainPage.currentAccount)).getValue()) {
+        mainPage.currentAccount.setPassword(password.getText());
+        ToServer.sendToServer(new UpdateProfileMessage(mainPage.currentAccount));
             try {
                 new PageLoader().load("timeLine");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else System.out.println("shit");
-
     }
 
     public void changeProfilePhoto(MouseEvent mouseEvent) {

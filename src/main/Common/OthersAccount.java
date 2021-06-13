@@ -12,12 +12,12 @@ public class OthersAccount implements Serializable {
     private String location;
     private String bio;
     private ArrayList<Post> Posts;
-    private ArrayList<Account> Following;
-    private ArrayList<Account> Followers;
+    private ArrayList<OthersAccount> Following;
+    private ArrayList<OthersAccount> Followers;
     private byte[] profileImage;
 
     public OthersAccount(String firstName, String lastName, String username, String location, String bio, ArrayList<Post> posts,
-                         ArrayList<Account> following, ArrayList<Account> followers, byte[] profileImage) {
+                         ArrayList<OthersAccount> following, ArrayList<OthersAccount> followers, byte[] profileImage) {
         FirstName = firstName;
         LastName = lastName;
         Username = username;
@@ -53,11 +53,11 @@ public class OthersAccount implements Serializable {
         return Posts;
     }
 
-    public ArrayList<Account> getFollowing() {
+    public ArrayList<OthersAccount> getFollowing() {
         return Following;
     }
 
-    public ArrayList<Account> getFollowers() {
+    public ArrayList<OthersAccount> getFollowers() {
         return Followers;
     }
 

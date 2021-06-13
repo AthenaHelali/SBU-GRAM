@@ -21,7 +21,7 @@ public class TimeLineController {
     public ImageView ProfileImage;
     public Label Username;
     public ImageView defultProfileImage;
-    private ArrayList<Post> posts = ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount)).getPosts();
+    private ArrayList<Post> posts;
     Post currentPost = new Post();
 
     @FXML
@@ -31,6 +31,7 @@ public class TimeLineController {
             ProfileImage.setVisible(true);
             defultProfileImage.setVisible(false);
         }
+        posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount)).getPosts();
         Username.setText(mainPage.currentAccount.getUsername());
         postList.setItems(FXCollections.observableArrayList(posts));
         postList.setCellFactory(postList -> new PostItem());

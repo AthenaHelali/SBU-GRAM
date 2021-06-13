@@ -18,8 +18,8 @@ public class Account implements Serializable {
     private String bio;
     private String Email;
     private ArrayList<Post> MyPosts;
-    private ArrayList<Account> Following;
-    private ArrayList<Account> Followers;
+    private ArrayList<OthersAccount> Following;
+    private ArrayList<OthersAccount> Followers;
     private ArrayList<Post> YouLiked;
     private byte[] profileImage;
     private Map<Account, List<Message>> directChat;
@@ -50,8 +50,8 @@ public class Account implements Serializable {
         this.location = location;
     }
 
-    public void setFollowers(Account account) {
-        Followers.add(account);
+    public void setFollowers(OthersAccount othersAccount) {
+        Followers.add(othersAccount);
     }
 
     public void setBio(String bio) {
@@ -66,7 +66,7 @@ public class Account implements Serializable {
         return bio;
     }
 
-    public ArrayList<Account> getFollowers() {
+    public ArrayList<OthersAccount> getFollowers() {
         return Followers;
     }
 
@@ -86,6 +86,26 @@ public class Account implements Serializable {
         YouLiked.remove(post);
     }
 
+    public void setMyPosts(ArrayList<Post> myPosts) {
+        MyPosts = myPosts;
+    }
+
+    public void setFollowing(ArrayList<OthersAccount> following) {
+        Following = following;
+    }
+
+    public void setFollowers(ArrayList<OthersAccount> followers) {
+        Followers = followers;
+    }
+
+    public void setYouLiked(ArrayList<Post> youLiked) {
+        YouLiked = youLiked;
+    }
+
+    public void setDirectChat(Map<Account, List<Message>> directChat) {
+        this.directChat = directChat;
+    }
+
     public void Repost(Post post) {
         MyPosts.add(post);
     }
@@ -94,7 +114,7 @@ public class Account implements Serializable {
         MyPosts.add(post);
     }
 
-    public void Follow(Account user) {
+    public void Follow(OthersAccount user) {
         Following.add(user);
     }
 
@@ -129,7 +149,7 @@ public class Account implements Serializable {
         return MyPosts;
     }
 
-    public ArrayList<Account> getFollowing() {
+    public ArrayList<OthersAccount> getFollowing() {
         return Following;
     }
 

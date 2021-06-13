@@ -16,6 +16,6 @@ public class mainPage extends Application {
     public static void main(String[] args) {
         boolean connection=ToServer.connectToServer();
         launch(args);
-        
+
     }
 }

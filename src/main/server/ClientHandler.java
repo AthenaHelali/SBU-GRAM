@@ -62,35 +62,31 @@ public class ClientHandler implements Runnable {
                     DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(newPostMessage.getNewPost().getWriterUsername()));
                     OutPut.writeObject(answerMessage);
 
-                }else if(receivedMessage instanceof LogOutMessage){
-                    IsOnline=false;
-                    answerMessage=new AnswerMessage();
+                } else if (receivedMessage instanceof LogOutMessage) {
+                    IsOnline = false;
+                    answerMessage = new AnswerMessage();
                     answerMessage.setValue(true);
                     OutPut.writeObject(answerMessage);
-                }
-                else if(receivedMessage instanceof UpdateProfileMessage){
-                    answerMessage=new AnswerMessage();
-                    UpdateProfileMessage updateProfileMessage=(UpdateProfileMessage)receivedMessage;
-                    Server.AllProfiles.replace(updateProfileMessage.getAccount().getUsername(),updateProfileMessage.getAccount());
-                    DataBase.getDataBase().UpdateProfile(updateProfileMessage.getAccount());
+                } else if (receivedMessage instanceof UpdateProfileMessage) {
+                    answerMessage = new AnswerMessage();
+                    UpdateProfileMessage updateProfileMessage = (UpdateProfileMessage) receivedMessage;
+                    updateProfileMessage.Handle(Server.AllProfiles);
+                    DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(updateProfileMessage.getAccount().getUsername()));
                     answerMessage.setValue(true);
                     OutPut.writeObject(answerMessage);
-                }
-                else if(receivedMessage instanceof GetAllProfilesMessage){
-                    answerMessage=new AnswerMessage();
-                    GetAllProfilesMessage getAllProfilesMessage=(GetAllProfilesMessage) receivedMessage;
+                } else if (receivedMessage instanceof GetAllProfilesMessage) {
+                    answerMessage = new AnswerMessage();
+                    GetAllProfilesMessage getAllProfilesMessage = (GetAllProfilesMessage) receivedMessage;
                     answerMessage.setOthersAccounts(getAllProfilesMessage.Handle(new ArrayList<Account>(Server.AllProfiles.values())));
                     OutPut.writeObject(answerMessage);
-                }
-                else if(receivedMessage instanceof FollowMessage){
-                    answerMessage=new AnswerMessage();
-                    FollowMessage followMessage=(FollowMessage)receivedMessage;
-                    answerMessage.setAccount(API.Follow(followMessage.getFollwer(),followMessage.getFollowedUser()));
+                } else if (receivedMessage instanceof FollowMessage) {
+                    answerMessage = new AnswerMessage();
+                    FollowMessage followMessage = (FollowMessage) receivedMessage;
+                    API.Follow(followMessage.getFollower(), followMessage.getFollowedUser());
                     OutPut.writeObject(answerMessage);
-                }
-                else if(receivedMessage instanceof timelinePostsMessage){
-                    answerMessage=new AnswerMessage();
-                    timelinePostsMessage timelinePostsMessage=(timelinePostsMessage) receivedMessage;
+                } else if (receivedMessage instanceof timelinePostsMessage) {
+                    answerMessage = new AnswerMessage();
+                    timelinePostsMessage timelinePostsMessage = (timelinePostsMessage) receivedMessage;
                     answerMessage.setPosts(timelinePostsMessage.Handle(new ArrayList<>(Server.AllProfiles.values())));
                     OutPut.writeObject(answerMessage);
                 }

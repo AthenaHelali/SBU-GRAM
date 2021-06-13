@@ -57,7 +57,8 @@ public class ProfileItemController {
         return root2;
     }
     public void Follow(ActionEvent actionEvent) throws IOException {
-        mainPage.currentAccount.Follow(ToServer.sendToServer(new FollowMessage(mainPage.currentAccount,othersAccount.getUsername())).getAccount());
+       ToServer.sendToServer(new FollowMessage(mainPage.currentAccount.getUsername(),othersAccount.getUsername())).getAccount();
+       mainPage.currentAccount.Follow(othersAccount);
         ToServer.sendToServer(new UpdateProfileMessage(mainPage.currentAccount));
     }
 

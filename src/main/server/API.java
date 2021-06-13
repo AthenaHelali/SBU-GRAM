@@ -1,6 +1,7 @@
 package main.server;
 
 import main.Common.Account;
+import main.Common.OthersAccount;
 import main.Common.Post;
 
 public class API {
@@ -29,11 +30,16 @@ public class API {
         }
 
     }
-    public static synchronized Account Follow(Account account,String username){
-        Server.AllProfiles.get(username).setFollowers(account);
-        account.Follow(Server.AllProfiles.get(username));
-        DataBase.getDataBase().UpdateProfile(account);
-        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(username));
-        return Server.AllProfiles.get(username);
+    public static void Follow(String FollowerUsername,String FollowedUsername){
+        Account account=Server.AllProfiles.get(FollowedUsername);
+        OthersAccount othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
+        ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
+        Server.AllProfiles.get(FollowerUsername).Follow(othersAccount);
+        account=Server.AllProfiles.get(FollowedUsername);
+        othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
+                ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
+        Server.AllProfiles.get(FollowedUsername).setFollowers(othersAccount);
+        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowerUsername));
+        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowedUsername));
     }
 }
