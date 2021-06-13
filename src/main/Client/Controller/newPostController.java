@@ -36,8 +36,8 @@ public class newPostController {
         if(!mainPage.currentAccount.getMyPosts().stream().map(a->a.getTitle()).collect(Collectors.toList()).contains(title.getText())){
             post.setPostImage(image);
             post.setWriterImage(mainPage.currentAccount.getProfileImage());
-            ToServer.sendToServer(new NewPostMessage(post));
             mainPage.currentAccount.NewPost(post);
+            ToServer.sendToServer(new NewPostMessage(post));
             DuplicateTitle.setVisible(false);
             try {
                 new PageLoader().load("timeLine");

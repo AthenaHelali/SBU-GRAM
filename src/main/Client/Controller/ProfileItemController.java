@@ -59,7 +59,6 @@ public class ProfileItemController {
     public void Follow(ActionEvent actionEvent) throws IOException {
        ToServer.sendToServer(new FollowMessage(mainPage.currentAccount.getUsername(),othersAccount.getUsername())).getAccount();
        mainPage.currentAccount.Follow(othersAccount);
-        ToServer.sendToServer(new UpdateProfileMessage(mainPage.currentAccount));
     }
 
 

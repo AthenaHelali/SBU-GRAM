@@ -49,6 +49,10 @@ public class PostItemController {
         descriptions.setText(post.getDescription());
         LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
         commentsNumber.setText(String.valueOf(post.getComments().size()));
+        if(mainPage.currentAccount.getYouLiked().contains(post)){
+            afterLike.setVisible(true);
+            beforLike.setVisible(false);
+        }
         return root;
     }
 

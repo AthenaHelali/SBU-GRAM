@@ -11,6 +11,7 @@ import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
 import main.Common.Message.UpdateProfileMessage;
+import main.Common.Post;
 
 import java.io.*;
 
@@ -81,6 +82,8 @@ public class EditProfileController {
                 ProfileImage.setVisible(true);
 
             }
+            for (Post post:mainPage.currentAccount.getMyPosts())
+                post.setWriterImage(image);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

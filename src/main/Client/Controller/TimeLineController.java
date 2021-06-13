@@ -31,7 +31,7 @@ public class TimeLineController {
             ProfileImage.setVisible(true);
             defultProfileImage.setVisible(false);
         }
-        posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount)).getPosts();
+        posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
         Username.setText(mainPage.currentAccount.getUsername());
         postList.setItems(FXCollections.observableArrayList(posts));
         postList.setCellFactory(postList -> new PostItem());

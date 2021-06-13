@@ -35,7 +35,7 @@ public class API {
         OthersAccount othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
         ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
         Server.AllProfiles.get(FollowerUsername).Follow(othersAccount);
-        account=Server.AllProfiles.get(FollowedUsername);
+        account=Server.AllProfiles.get(FollowerUsername);
         othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
                 ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
         Server.AllProfiles.get(FollowedUsername).setFollowers(othersAccount);

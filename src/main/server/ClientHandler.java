@@ -87,7 +87,7 @@ public class ClientHandler implements Runnable {
                 } else if (receivedMessage instanceof timelinePostsMessage) {
                     answerMessage = new AnswerMessage();
                     timelinePostsMessage timelinePostsMessage = (timelinePostsMessage) receivedMessage;
-                    answerMessage.setPosts(timelinePostsMessage.Handle(new ArrayList<>(Server.AllProfiles.values())));
+                    answerMessage.setPosts(timelinePostsMessage.Handle(Server.AllProfiles));
                     OutPut.writeObject(answerMessage);
                 }
             } catch (IOException e) {
