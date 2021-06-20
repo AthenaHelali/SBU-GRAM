@@ -20,8 +20,10 @@ public class timelinePostsMessage implements Message {
         ArrayList<String>Usernames;
         for (Account ac:accounts){
            if(ac.getFollowers().stream().map(a->a.getUsername()).anyMatch(a->a.equals(account))){
-               for (Post post:ac.getMyPosts())
+               for (Post post:ac.getMyPosts()) {
+                   if (post.getWriterUsername().equals(ac.getUsername()))
                    posts.add(post);
+               }
 
             }
         }

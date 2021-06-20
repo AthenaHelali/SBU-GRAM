@@ -9,8 +9,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
+import main.Common.Message.MyPostsMessage;
 import main.Common.Post;
 
 import java.io.ByteArrayInputStream;
@@ -30,10 +32,11 @@ public class pageController {
     public ListView postList1;
     public Label Posts;
     public ImageView defaultProfileImage1;
-    private ArrayList<Post> posts = mainPage.currentAccount.getMyPosts();
+    private ArrayList<Post> posts;
 
     @FXML
     public void initialize() {
+        posts= ToServer.sendToServer(new MyPostsMessage(mainPage.currentAccount.getUsername())).getPosts();
         if(mainPage.currentAccount.getProfileImage()!=null) {
             ProfileImage1.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             ProfileImage1.setVisible(true);

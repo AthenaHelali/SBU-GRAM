@@ -19,6 +19,7 @@ import main.Common.Message.SignUpMessage;
 import main.Common.Message.UserExistMessage;
 
 import java.io.*;
+import java.util.regex.Pattern;
 
 public class SignUpController {
 
@@ -39,6 +40,13 @@ public class SignUpController {
     public TextField Email;
     public Label toLogin;
     public byte[] profileImage;
+    public Label invalidPassword;
+    public Label usernameAlreadyTaken;
+    public Label PasswordDoesnotMatch;
+    public Label emptyLastname;
+    public Label emptyFirstname;
+    public Label emptyUsername;
+    public Label emptyEmail;
 
     public void ToLogin(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Login");
@@ -67,21 +75,67 @@ public class SignUpController {
         String Username = usernameField.getText();
         String Password;
         String ConfirmPassword;
-        if (passwordField.isVisible())
-            Password = passwordField.getText();
-        else
-            Password = ConfirmPasswordShow.getText();
-
-        if (ConfirmPasswordField.isVisible())
-            ConfirmPassword = passwordField.getText();
-        else
-            ConfirmPassword = ConfirmPasswordShow.getText();
-
         String firstname = Firstname.getText();
         String lastname = Lastname.getText();
         String email = Email.getText();
+        String PassWordRegex="\\w";
 
-        if (!ToServer.sendToServer(new UserExistMessage(Username)).getValue()) {
+        if (passwordField.isVisible())
+            Password = passwordField.getText().trim();
+        else
+            Password = PasswordShow.getText().trim();
+
+        if (ConfirmPasswordField.isVisible())
+            ConfirmPassword = ConfirmPasswordField.getText().trim();
+        else
+            ConfirmPassword = ConfirmPasswordShow.getText();
+
+        if(ToServer.sendToServer(new UserExistMessage(Username)).getValue()){
+            usernameAlreadyTaken.setVisible(true);
+            Username=null;
+        }else {
+            if(usernameAlreadyTaken.isVisible())
+                usernameAlreadyTaken.setVisible(false);
+        }
+        if(Password==null|Password.length()<8){
+            invalidPassword.setVisible(true);
+            Password=null;
+        }else {
+            if(invalidPassword.isVisible())
+                invalidPassword.setVisible(false);
+            if(!Password.equals(ConfirmPassword)){
+                PasswordDoesnotMatch.setVisible(true);
+                Password=null;
+            }else {
+                if (PasswordDoesnotMatch.isVisible()) {
+                    PasswordDoesnotMatch.setVisible(false);
+                }
+            }
+        }
+
+        if(firstname==null|firstname.length()==0){
+            emptyFirstname.setVisible(true);
+            firstname=null;
+        }else {
+            if(emptyFirstname.isVisible())
+                emptyFirstname.setVisible(false);
+        }
+        if(lastname==null|lastname.length()==0){
+            emptyLastname.setVisible(true);
+            lastname=null;
+        }else {
+            if(emptyLastname.isVisible())
+                emptyLastname.setVisible(false);
+        }
+        if(email==null|email.length()==0){
+            emptyEmail.setVisible(true);
+            email=null;
+        }else {
+            if(emptyEmail.isVisible())
+                emptyEmail.setVisible(false);
+        }
+
+        if (Username!=null&&firstname!=null&&lastname!=null&&email!=null&&Password!=null) {
             Account account = new Account(firstname, lastname, Username, Password, email);
             if (profileImage!=null)
             account.setProfileImage(profileImage);

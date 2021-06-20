@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,19 +8,19 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" pickOnBounds="false" prefHeight="465.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" pickOnBounds="false" prefHeight="137.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="beforLike" fitHeight="26.0" fitWidth="32.0" layoutX="266.0" layoutY="415.0" onMouseClicked="#Like" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="beforLike" fitHeight="26.0" fitWidth="32.0" layoutX="244.0" layoutY="90.0" onMouseClicked="#Like" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/like1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="184.0" layoutY="407.0" onMouseClicked="#repost" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="162.0" layoutY="81.0" onMouseClicked="#repost" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/repost.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="104.0" layoutY="410.0" onMouseClicked="#comment" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="82.0" layoutY="85.0" onMouseClicked="#comment" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/comment.png" />
          </image>
@@ -34,31 +33,28 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Label fx:id="username" layoutX="71.0" layoutY="19.0" onMouseClicked="#ToWriterPage" text="Username" textFill="WHITE">
+      <Label fx:id="username" layoutX="71.0" layoutY="19.0" text="Username" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="title" layoutX="270.0" layoutY="19.0" text=" post title" textFill="WHITE">
+      <Label fx:id="title" layoutX="259.0" layoutY="20.0" text=" post title" textFill="WHITE">
          <font>
             <Font name="System Italic" size="12.0" />
          </font></Label>
-      <ImageView fx:id="afterLike" fitHeight="28.0" fitWidth="33.0" layoutX="265.0" layoutY="414.0" onMouseClicked="#Like" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="afterLike" fitHeight="28.0" fitWidth="33.0" layoutX="243.0" layoutY="89.0" onMouseClicked="#Like" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/like2.png" />
          </image>
       </ImageView>
-      <Label fx:id="commentsNumber" layoutX="135.0" layoutY="428.0" text="0" textFill="WHITE" />
-      <Label fx:id="repotsNumber" layoutX="217.0" layoutY="433.0" text="0" textFill="WHITE" />
-      <Label fx:id="LikesNumber" layoutX="289.0" layoutY="433.0" text="0" textFill="WHITE" />
-      <Line endX="190.0" layoutX="185.0" layoutY="66.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
-      <JFXTextArea fx:id="descriptions" focusColor="#1f2041" layoutX="50.0" layoutY="269.0" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #ffff;" unFocusColor="#1f2041" />
-      <ImageView fx:id="defaultPostImage" fitHeight="188.0" fitWidth="188.0" layoutX="107.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="commentsNumber" layoutX="113.0" layoutY="103.0" text="0" textFill="WHITE" />
+      <Label fx:id="repotsNumber" layoutX="195.0" layoutY="108.0" text="0" textFill="WHITE" />
+      <Label fx:id="LikesNumber" layoutX="267.0" layoutY="108.0" text="0" textFill="WHITE" />
+      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="305.0" layoutY="90.0" onMouseClicked="#detail" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/noImage.png" />
+            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/details.png" />
          </image>
       </ImageView>
-      <Line endX="190.0" layoutX="177.0" layoutY="398.0" startX="-160.0" stroke="WHITE" strokeWidth="0.3" />
-      <ImageView fx:id="PostImage" fitHeight="188.0" fitWidth="188.0" layoutX="107.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+      <Line endX="159.4000244140625" endY="1.52587890625E-5" layoutX="187.0" layoutY="77.0" startX="-121.4000244140625" startY="1.52587890625E-5" stroke="WHITE" strokeWidth="0.3" />
    </children>
 </AnchorPane>

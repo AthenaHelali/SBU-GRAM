@@ -53,7 +53,7 @@ public class ClientHandler implements Runnable {
                 } else if (receivedMessage instanceof LikeMessage) {
                     answerMessage = new AnswerMessage();
                     LikeMessage likeMessage = (LikeMessage) receivedMessage;
-                    answerMessage.setValue(API.Like(likeMessage.post, likeMessage.WhoLiked));
+                    answerMessage.setValue(API.Like(likeMessage.post, Server.AllProfiles.get(likeMessage.WhoLiked)));
                     OutPut.writeObject(answerMessage);
                 } else if (receivedMessage instanceof NewPostMessage) {
                     answerMessage = new AnswerMessage();
@@ -88,6 +88,31 @@ public class ClientHandler implements Runnable {
                     answerMessage = new AnswerMessage();
                     timelinePostsMessage timelinePostsMessage = (timelinePostsMessage) receivedMessage;
                     answerMessage.setPosts(timelinePostsMessage.Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof GetProfileImageMessage){
+                    answerMessage=new AnswerMessage();
+                   answerMessage.setProfileImage( Server.AllProfiles.get(((GetProfileImageMessage) receivedMessage).getUsername()).getProfileImage());
+                   OutPut.writeObject(answerMessage);
+                }else if (receivedMessage instanceof getCommentsMessage){
+                    answerMessage=new AnswerMessage();
+                    getCommentsMessage commentsMessage=(getCommentsMessage) receivedMessage;
+                    answerMessage.setComments(commentsMessage.Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof NewCommentMessage){
+                    answerMessage=new AnswerMessage();
+                    NewCommentMessage newCommentMessage=(NewCommentMessage) receivedMessage;
+                    newCommentMessage.Handle(Server.AllProfiles);
+                    OutPut.writeObject(answerMessage);
+                    DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(newCommentMessage.getPostWriter()));
+                }else if(receivedMessage instanceof getAccountbyeUsernameMessage){
+                    answerMessage=new AnswerMessage();
+                    getAccountbyeUsernameMessage accountbyeUsernameMessage=(getAccountbyeUsernameMessage) receivedMessage;
+                    answerMessage.setOtherAccount(accountbyeUsernameMessage.Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof MyPostsMessage){
+                    answerMessage=new AnswerMessage();
+                    MyPostsMessage myPostsMessage=(MyPostsMessage) receivedMessage;
+                    answerMessage.setPosts(Server.AllProfiles.get(myPostsMessage.getUsername()).getMyPosts());
                     OutPut.writeObject(answerMessage);
                 }
             } catch (IOException e) {

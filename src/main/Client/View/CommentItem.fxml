@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="100.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="defaultImage" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/userr.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ProfileImage" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="username2" layoutX="50.0" layoutY="18.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="comment" layoutX="55.0" layoutY="56.0" text="comment.........." textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

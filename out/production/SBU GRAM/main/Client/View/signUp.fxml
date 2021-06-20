@@ -13,42 +13,42 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Client.Controller.SignUpController">
    <children>
-      <TextField fx:id="usernameField" layoutX="111.0" layoutY="242.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="uername" style="-fx-background-color: #4B3F72;" />
-      <PasswordField fx:id="passwordField" layoutX="111.0" layoutY="325.0" prefHeight="30.0" prefWidth="180.0" promptText="password" style="-fx-background-color: #4B3F72;" />
-      <TextField fx:id="PasswordShow" layoutX="111.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="password" style="-fx-background-color: #4B3F72;" visible="false" />
-      <CheckBox fx:id="showPassword_checkbox" layoutX="265.0" layoutY="334.0" mnemonicParsing="false" onAction="#showPass" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
+      <TextField fx:id="usernameField" layoutX="111.0" layoutY="234.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="uername" style="-fx-background-color: #4B3F72;" />
+      <PasswordField fx:id="passwordField" layoutX="111.0" layoutY="337.0" prefHeight="30.0" prefWidth="180.0" promptText="password" style="-fx-background-color: #4B3F72;" />
+      <TextField fx:id="PasswordShow" layoutX="111.0" layoutY="337.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="password" style="-fx-background-color: #4B3F72;" visible="false" />
+      <CheckBox fx:id="showPassword_checkbox" layoutX="265.0" layoutY="346.0" mnemonicParsing="false" onAction="#showPass" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
          <font>
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="Firstname" alignment="CENTER" layoutX="111.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="80.0" promptText="first name" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="Firstname" alignment="CENTER" layoutX="111.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="80.0" promptText="first name" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="Lastname" alignment="CENTER" layoutX="209.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="80.0" promptText="last name" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="Lastname" alignment="CENTER" layoutX="209.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="80.0" promptText="last name" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="12.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="ConfirmPasswordField" layoutX="111.0" layoutY="366.0" prefHeight="30.0" prefWidth="180.0" promptText="confirm password" style="-fx-background-color: #4B3F72;" />
-      <TextField fx:id="ConfirmPasswordShow" layoutX="111.0" layoutY="366.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText=" confirm password" style="-fx-background-color: #4B3F72;" visible="false" />
-      <CheckBox fx:id="showConfirmPassword_checkbox" layoutX="265.0" layoutY="374.0" mnemonicParsing="false" onAction="#showConfPass" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
+      <PasswordField fx:id="ConfirmPasswordField" layoutX="111.0" layoutY="390.0" prefHeight="30.0" prefWidth="180.0" promptText="confirm password" style="-fx-background-color: #4B3F72;" />
+      <TextField fx:id="ConfirmPasswordShow" layoutX="111.0" layoutY="390.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText=" confirm password" style="-fx-background-color: #4B3F72;" visible="false" />
+      <CheckBox fx:id="showConfirmPassword_checkbox" layoutX="265.0" layoutY="398.0" mnemonicParsing="false" onAction="#showConfPass" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #4B3F72;" textFill="#643bb8">
          <font>
             <Font size="10.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="Email" layoutX="111.0" layoutY="283.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="e-mail" style="-fx-background-color: #4B3F72;">
+      <TextField fx:id="Email" layoutX="111.0" layoutY="286.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="e-mail" style="-fx-background-color: #4B3F72;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label fx:id="ForgetPassword_Field" layoutX="119.0" layoutY="467.0" text="by creating an account you agree to our" textFill="#d1cccc">
+      <Label fx:id="ForgetPassword_Field" layoutX="119.0" layoutY="492.0" text="by creating an account you agree to our" textFill="#d1cccc">
          <font>
             <Font name="Arial Narrow" size="11.0" />
          </font>
       </Label>
-      <Label fx:id="ForgetPassword_Field1" layoutX="127.0" layoutY="482.0" text="conditions of use and privacy notice." textFill="#d1cccc">
+      <Label fx:id="ForgetPassword_Field1" layoutX="127.0" layoutY="507.0" text="conditions of use and privacy notice." textFill="#d1cccc">
          <font>
             <Font name="Arial Narrow" size="11.0" />
          </font>
@@ -64,7 +64,7 @@
             <Font name="Ebrima Bold" size="14.0" />
          </font>
       </Label>
-      <JFXButton fx:id="Signup_botton" buttonType="RAISED" layoutX="102.0" layoutY="420.0" onAction="#SignUp" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #4B3F72;" text="sign up" textFill="WHITE">
+      <JFXButton fx:id="Signup_botton" buttonType="RAISED" layoutX="102.0" layoutY="445.0" onAction="#SignUp" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #4B3F72;" text="sign up" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -75,5 +75,40 @@
             <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/image.png" />
          </image>
       </ImageView>
+      <Label fx:id="invalidPassword" layoutX="113.0" layoutY="367.0" text="invalid Password!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="usernameAlreadyTaken" layoutX="111.0" layoutY="264.0" text="username is already taken!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="PasswordDoesnotMatch" layoutX="111.0" layoutY="420.0" text="password confirmation does not match!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="emptyLastname" layoutX="296.0" layoutY="198.0" text="*" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="emptyFirstname" layoutX="196.0" layoutY="196.0" text="*" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="emptyUsername" layoutX="300.0" layoutY="241.0" text="*" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="emptyEmail" layoutX="301.0" layoutY="293.0" text="*" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -14,17 +14,28 @@ import java.util.ArrayList;
 
 public class SearchController {
     public ListView ProfileList;
-    public ArrayList<OthersAccount>othersAccounts= ToServer.sendToServer(new GetAllProfilesMessage()).getOthersAccounts();
+    public ArrayList<OthersAccount>othersAccounts;
     @FXML
     public void initialize() {
+        ArrayList<OthersAccount>othersAccounts= ToServer.sendToServer(new GetAllProfilesMessage()).getOthersAccounts();
         ProfileList.setItems(FXCollections.observableArrayList(othersAccounts));
         ProfileList.setCellFactory(ProfileList -> new ProfileItem());
     }
 
-    public void menue(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("menu");
+    public void menue(MouseEvent mouseEvent){
+        try {
+            new PageLoader().load("menu");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void refresh(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("searchPage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

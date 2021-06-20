@@ -2,7 +2,9 @@ package main.Common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Post implements Serializable {
     private String title;
@@ -21,6 +23,10 @@ public class Post implements Serializable {
         WriterUsername = writerUsername;
         this.description = description;
         comments=new ArrayList<>();
+    }
+
+    public void setRepostNum(int repostNum) {
+        this.repostNum = repostNum;
     }
 
     public byte[] getPostImage() {
@@ -74,10 +80,20 @@ public class Post implements Serializable {
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
+    public void AddComent(Comment comment){
+        this.comments.add(comment);
+    }
 
     public ArrayList<Comment> getComments() {
         return comments;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return  Objects.equals(title, post.title) && Objects.equals(WriterUsername, post.WriterUsername);
+    }
 
 }

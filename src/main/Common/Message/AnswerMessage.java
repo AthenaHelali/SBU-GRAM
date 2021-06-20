@@ -1,6 +1,7 @@
 package main.Common.Message;
 
 import main.Common.Account;
+import main.Common.Comment;
 import main.Common.OthersAccount;
 import main.Common.Post;
 
@@ -12,6 +13,35 @@ public class AnswerMessage implements Message{
     private Account account;
     private ArrayList<Post>posts;
     private ArrayList<OthersAccount>othersAccounts;
+    private ArrayList<Comment>comments;
+    private OthersAccount otherAccount;
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void setOtherAccount(OthersAccount otherAccount) {
+        this.otherAccount = otherAccount;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public OthersAccount getOtherAccount() {
+        return otherAccount;
+    }
+
+
+    private byte[] ProfileImage;
+
+    public void setProfileImage(byte[] profileImage) {
+        ProfileImage = profileImage;
+    }
+
+    public byte[] getProfileImage() {
+        return ProfileImage;
+    }
 
     public void setAccount(Account account) {
         this.account = account;

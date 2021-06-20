@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.36798128342245984" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Client.Controller.OthersPageController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #1F2041;">
+         <children>
+            <Region layoutX="-1.0" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #4B3F72;" />
+            <Label fx:id="bio" layoutX="28.0" layoutY="136.0" text="bio..." textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="defaultProfileImage1" fitHeight="70.0" fitWidth="70.0" layoutX="13.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/userr.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Username1" layoutX="17.0" layoutY="104.0" prefHeight="18.0" prefWidth="77.0" text="username" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="firstname" layoutX="25.0" layoutY="160.0" text="-firstname" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="242.0" layoutY="75.0" text="Following" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="321.0" layoutY="75.0" text="Followers" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="8.0" layoutY="10.0" onMouseClicked="#TotimeLine" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/back.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Followers" layoutX="341.0" layoutY="55.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="Following" layoutX="260.0" layoutY="55.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="193.0" layoutY="75.0" text="Posts" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="Posts" layoutX="204.0" layoutY="55.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lastname" layoutX="107.0" layoutY="160.0" text="-lastname" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="location1" layoutX="185.0" layoutY="160.0" text="-location" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="FollowButton" layoutX="22.0" layoutY="184.0" onAction="#Follow" prefHeight="26.0" prefWidth="214.0" style="-fx-background-color: #4B3F72;" text="Follow" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="FollowingButton" layoutX="22.0" layoutY="184.0" onAction="#Following" prefHeight="26.0" prefWidth="214.0" style="-fx-background-color: #549e8e;" text="Following" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="ProfileImage2" fitHeight="70.0" fitWidth="70.0" layoutX="13.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #1F2041;">
+         <children>
+            <JFXListView fx:id="PostList2" layoutY="1.0" prefHeight="375.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>

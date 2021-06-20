@@ -1,5 +1,6 @@
 package main.Common;
 
+import javafx.geometry.Pos;
 import main.Common.Message.Message;
 
 import java.io.Serializable;
@@ -163,6 +164,9 @@ public class Account implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public void addMyPosts(Post post){
+        this.getMyPosts().add(post);
     }
 
     public void setEmail(String email) {

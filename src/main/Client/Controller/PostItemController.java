@@ -1,6 +1,5 @@
 package main.Client.Controller;
 
-import com.jfoenix.controls.JFXTextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import main.Client.ToServer;
@@ -11,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import main.Common.Message.LikeMessage;
+import main.Common.Message.GetProfileImageMessage;
+import main.Common.Message.UpdateProfileMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -24,71 +25,74 @@ public class PostItemController {
     public Label LikesNumber;
     public Label commentsNumber;
     public Label repotsNumber;
-    public JFXTextArea descriptions;
-    public ImageView PostImage;
-    public ImageView defaultPostImage;
-    Post post;
+    public static Post CurrentPost;
 
     //each list item will have its exclusive controller in runtime so we set the controller as we load the fxml
     public PostItemController(Post post) throws IOException {
         new PageLoader().load("postItem", this);
-        this.post = post;
+        this.CurrentPost = post;
     }
 
     //this anchor pane is returned to be set as the list view item
     public AnchorPane init() {
-        if(post.getWriterImage()!=null)
-        writerImage.setImage(new Image(new ByteArrayInputStream(post.getWriterImage())));
-        username.setText(post.getWriterUsername());
-        title.setText(post.getTitle());
-        if(post.getPostImage()!=null){
-            PostImage.setImage(new Image(new ByteArrayInputStream(post.getPostImage())));
-            defaultPostImage.setVisible(false);
-            PostImage.setVisible(true);
-        }
-        descriptions.setText(post.getDescription());
-        LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
-        commentsNumber.setText(String.valueOf(post.getComments().size()));
-        if(mainPage.currentAccount.getYouLiked().contains(post)){
+        byte[]PImage=ToServer.sendToServer(new GetProfileImageMessage(CurrentPost.getWriterUsername())).getProfileImage();
+        if(PImage!=null)
+        writerImage.setImage(new Image(new ByteArrayInputStream(PImage)));
+        username.setText(CurrentPost.getWriterUsername());
+        title.setText(CurrentPost.getTitle());
+        LikesNumber.setText(String.valueOf(CurrentPost.getLike().getNumberOfLikes()));
+        commentsNumber.setText(String.valueOf(CurrentPost.getComments().size()));
+        if(mainPage.currentAccount.getYouLiked().contains(CurrentPost)){
             afterLike.setVisible(true);
             beforLike.setVisible(false);
         }
+        repotsNumber.setText(String.valueOf(CurrentPost.getRepostNum()));
         return root;
     }
 
-    public void details(MouseEvent mouseEvent) {
-
-    }
 
     public void Like(MouseEvent mouseEvent) {
-        if(ToServer.sendToServer(new LikeMessage(mainPage.currentAccount,post)).getValue()){
+        if(ToServer.sendToServer(new LikeMessage(mainPage.currentAccount.getUsername(), CurrentPost)).getValue()){
             beforLike.setVisible(false);
             afterLike.setVisible(true);
-            post.getLike().LikePost(mainPage.currentAccount);
-            LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
-            mainPage.currentAccount.addYouLiked(post);
+            CurrentPost.getLike().LikePost(mainPage.currentAccount);
+            LikesNumber.setText(String.valueOf(CurrentPost.getLike().getNumberOfLikes()));
+            mainPage.currentAccount.addYouLiked(CurrentPost);
 
         }
         else {
             beforLike.setVisible(true);
             afterLike.setVisible(false);
-            post.getLike().disLikePost(mainPage.currentAccount);
-            LikesNumber.setText(String.valueOf(post.getLike().getNumberOfLikes()));
-            mainPage.currentAccount.RemoveYouLiked(post);
+            CurrentPost.getLike().disLikePost(mainPage.currentAccount);
+            LikesNumber.setText(String.valueOf(CurrentPost.getLike().getNumberOfLikes()));
+            mainPage.currentAccount.RemoveYouLiked(CurrentPost);
 
 
         }
     }
 
     public void comment(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("CommentPage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void repost(MouseEvent mouseEvent) {
+        if(!mainPage.currentAccount.getMyPosts().contains(CurrentPost)) {
+            CurrentPost.setRepostNum(CurrentPost.getRepostNum() + 1);
+            mainPage.currentAccount.addMyPosts(CurrentPost);
+            ToServer.sendToServer(new UpdateProfileMessage(mainPage.currentAccount));
+        }
+
+    }
+    public void detail(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("PostDetail");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void ToWriterPage(MouseEvent mouseEvent) {
-    }
-    /*
-    you can also add on mouse click for like and repost image 
-     */
 }

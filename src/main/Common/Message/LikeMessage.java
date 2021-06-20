@@ -5,10 +5,10 @@ import main.Common.Post;
 
 public class LikeMessage implements Message{
     public static final long serialVersionUID = 22345678L;
-    public Account WhoLiked;
+    public String WhoLiked;
     public Post post;
 
-    public LikeMessage(Account whoLiked, Post post) {
+    public LikeMessage(String whoLiked, Post post) {
         WhoLiked = whoLiked;
         this.post = post;
     }

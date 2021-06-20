@@ -6,7 +6,7 @@ import main.Common.Post;
 
 public class API {
     //client side decides what to do according to return value
-    public static synchronized boolean Like(Post post, Account WhoLiked){
+    public static boolean Like(Post post, Account WhoLiked){
         Post temp=null;
        for (Post posts:Server.AllProfiles.get(post.getWriterUsername()).getMyPosts()){
            if(posts.getTitle().equals(post.getTitle())){

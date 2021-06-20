@@ -22,7 +22,6 @@ public class TimeLineController {
     public Label Username;
     public ImageView defultProfileImage;
     private ArrayList<Post> posts;
-    Post currentPost = new Post();
 
     @FXML
     public void initialize() {
@@ -46,6 +45,11 @@ public class TimeLineController {
     }
 
     public void refresh(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("timeLine");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void menue(MouseEvent mouseEvent) {
