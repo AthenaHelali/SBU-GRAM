@@ -42,4 +42,13 @@ public class API {
         DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowerUsername));
         DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowedUsername));
     }
+    public static void UnFollow(String FollowerUsername,String UnFollowedUsername){
+        Account account=Server.AllProfiles.get(FollowerUsername);
+        OthersAccount othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
+                ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
+        account.Unfollow(othersAccount);
+        Server.AllProfiles.get(UnFollowedUsername).getFollowers().remove(account);
+        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowerUsername));
+        DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(UnFollowedUsername));
+    }
 }

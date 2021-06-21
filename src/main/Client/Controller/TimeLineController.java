@@ -15,6 +15,7 @@ import main.Common.Message.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class TimeLineController {
     public ListView<Post> postList;
@@ -25,12 +26,13 @@ public class TimeLineController {
 
     @FXML
     public void initialize() {
+        posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
+        Collections.sort(posts,(a,b)->a.getMiliTime()-b.getMiliTime()>0?-1:a.getMiliTime()-b.getMiliTime()==0?0:1);
         if (mainPage.currentAccount.getProfileImage() != null) {
             ProfileImage.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             ProfileImage.setVisible(true);
             defultProfileImage.setVisible(false);
         }
-        posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
         Username.setText(mainPage.currentAccount.getUsername());
         postList.setItems(FXCollections.observableArrayList(posts));
         postList.setCellFactory(postList -> new PostItem());

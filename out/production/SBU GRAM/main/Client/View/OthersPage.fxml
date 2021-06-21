@@ -75,7 +75,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="location1" layoutX="185.0" layoutY="160.0" text="-location" textFill="WHITE">
+            <Label fx:id="location2" layoutX="185.0" layoutY="160.0" text="-location" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

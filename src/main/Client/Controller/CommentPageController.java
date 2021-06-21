@@ -17,6 +17,7 @@ import main.Common.Message.getCommentsMessage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CommentPageController {
     public ImageView defaultImage;
@@ -26,7 +27,9 @@ public class CommentPageController {
     public ListView CommentsList;
 
     public void initialize() {
-        comments= ToServer.sendToServer(new getCommentsMessage(PostItemController.CurrentPost.getWriterUsername(),PostItemController.CurrentPost.getTitle())).getComments();
+        comments= ToServer.sendToServer(new getCommentsMessage(PostItemController.CurrentPost.getWriterUsername()
+                ,PostItemController.CurrentPost.getTitle())).getComments();
+        Collections.sort(comments,(a,b)->a.getMiliTime()-b.getMiliTime()>0?-1:a.getMiliTime()-b.getMiliTime()==0?0:1);
         if(mainPage.currentAccount.getProfileImage()!=null){
             Image.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             Image.setVisible(true);

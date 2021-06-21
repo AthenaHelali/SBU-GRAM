@@ -24,7 +24,7 @@
                   <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/refresh.png" />
                </image>
             </ImageView>
-            <Label layoutX="180.0" layoutY="11.0" text="Search" textFill="WHITE">
+            <Label layoutX="163.0" layoutY="11.0" text="Search" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>

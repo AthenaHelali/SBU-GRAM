@@ -56,11 +56,20 @@ public class ProfileItemController {
 
         return root2;
     }
-    public void Follow(ActionEvent actionEvent) throws IOException {
-       ToServer.sendToServer(new FollowMessage(mainPage.currentAccount.getUsername(),othersAccount.getUsername())).getAccount();
+    public void Follow(ActionEvent actionEvent)  {
+       ToServer.sendToServer(new FollowMessage(mainPage.currentAccount.getUsername(),othersAccount.getUsername()));
        mainPage.currentAccount.Follow(othersAccount);
        Follow.setVisible(false);
        following.setVisible(true);
+    }
+    public void ToPage(ActionEvent actionEvent) {
+        PostDetailsController.CurrentOtherAccount=othersAccount;
+        try {
+            new PageLoader().load("OthersPage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

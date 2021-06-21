@@ -114,6 +114,16 @@ public class ClientHandler implements Runnable {
                     MyPostsMessage myPostsMessage=(MyPostsMessage) receivedMessage;
                     answerMessage.setPosts(Server.AllProfiles.get(myPostsMessage.getUsername()).getMyPosts());
                     OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof GetMyAccountMessage){
+                    answerMessage=new AnswerMessage();
+                    GetMyAccountMessage getMyAccountMessage=(GetMyAccountMessage) receivedMessage;
+                    answerMessage.setAccount(getMyAccountMessage.Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof UnfollowMessage){
+                    answerMessage=new AnswerMessage();
+                    UnfollowMessage unfollowMessage=(UnfollowMessage) receivedMessage;
+                    API.UnFollow(unfollowMessage.getFollower(), unfollowMessage.getUnfollowedUser());
+                    OutPut.writeObject(answerMessage);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

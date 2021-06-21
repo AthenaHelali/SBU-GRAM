@@ -33,6 +33,8 @@ public class PostDetailsController {
     public ImageView PostImage;
     public AnchorPane root;
     public static OthersAccount CurrentOtherAccount;
+    public Label dateAndTime;
+
     public void initialize() {
         CurrentOtherAccount=ToServer.sendToServer(new getAccountbyeUsernameMessage(PostItemController.CurrentPost.getWriterUsername())).getOtherAccount();
         byte[]PImage= ToServer.sendToServer(new GetProfileImageMessage(PostItemController.CurrentPost.getWriterUsername())).getProfileImage();
@@ -44,6 +46,7 @@ public class PostDetailsController {
             PostImage.setImage(new Image(new ByteArrayInputStream(PostItemController.CurrentPost.getPostImage())));
             PostImage.setVisible(true);
         }
+        dateAndTime.setText(PostItemController.CurrentPost.getDateAndTime());
         username.setText(PostItemController.CurrentPost.getWriterUsername());
         title.setText(PostItemController.CurrentPost.getTitle());
         LikesNumber.setText(String.valueOf(PostItemController.CurrentPost.getLike().getNumberOfLikes()));

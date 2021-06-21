@@ -15,9 +15,13 @@ public class Post implements Serializable {
     private String description;
     private byte[]writerImage;
     private byte[]PostImage=null;
+    private String DateAndTime;
+    private long MiliTime;
     public Post(){}
 
     public Post(String title, String writerUsername, String description) {
+        MiliTime=DateTime.getMilli();
+        DateAndTime=DateTime.getTime();
         like=new Like();
         this.title = title;
         WriterUsername = writerUsername;
@@ -86,6 +90,14 @@ public class Post implements Serializable {
 
     public ArrayList<Comment> getComments() {
         return comments;
+    }
+
+    public String getDateAndTime() {
+        return DateAndTime;
+    }
+
+    public long getMiliTime() {
+        return MiliTime;
     }
 
     @Override

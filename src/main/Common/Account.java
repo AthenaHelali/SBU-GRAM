@@ -45,6 +45,7 @@ public class Account implements Serializable {
         this.password = password;
         Email = email;
         profileImage=null;
+        location=null;
     }
 
     public void setLocation(String location) {
@@ -119,7 +120,7 @@ public class Account implements Serializable {
         Following.add(user);
     }
 
-    public void Unfollow(Account user) {
+    public void Unfollow(OthersAccount user) {
         Following.remove(user);
     }
 
