@@ -14,6 +14,22 @@ public class Comment implements Serializable {
         return MiliTime;
     }
 
+    public void setWriterUsername(String writerUsername) {
+        WriterUsername = writerUsername;
+    }
+
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
+    }
+
+    public void setDateAndTime(String dateAndTime) {
+        DateAndTime = dateAndTime;
+    }
+
+    public void setMiliTime(Long miliTime) {
+        MiliTime = miliTime;
+    }
+
     private String DateAndTime;
     private Long MiliTime;
 

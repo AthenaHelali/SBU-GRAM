@@ -17,7 +17,7 @@ public class SearchController {
     public ArrayList<OthersAccount>othersAccounts;
     @FXML
     public void initialize() {
-        ArrayList<OthersAccount>othersAccounts= ToServer.sendToServer(new GetAllProfilesMessage()).getOthersAccounts();
+        othersAccounts= ToServer.sendToServer(new GetAllProfilesMessage()).getOthersAccounts();
         ProfileList.setItems(FXCollections.observableArrayList(othersAccounts));
         ProfileList.setCellFactory(ProfileList -> new ProfileItem());
     }

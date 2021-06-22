@@ -34,20 +34,23 @@ public class API {
         Account account=Server.AllProfiles.get(FollowedUsername);
         OthersAccount othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
         ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
-        Server.AllProfiles.get(FollowerUsername).Follow(othersAccount);
-        account=Server.AllProfiles.get(FollowerUsername);
-        othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
-                ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
-        Server.AllProfiles.get(FollowedUsername).setFollowers(othersAccount);
+        if(! Server.AllProfiles.get(FollowerUsername).getFollowing().contains(othersAccount)) {
+            Server.AllProfiles.get(FollowerUsername).Follow(othersAccount);
+            account = Server.AllProfiles.get(FollowerUsername);
+            othersAccount = new OthersAccount(account.getFirstName(), account.getLastName(), account.getUsername(), account.getLocation()
+                    , account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
+            Server.AllProfiles.get(FollowedUsername).setFollowers(othersAccount);
+        }
         DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowerUsername));
         DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowedUsername));
     }
     public static void UnFollow(String FollowerUsername,String UnFollowedUsername){
-        Account account=Server.AllProfiles.get(FollowerUsername);
-        OthersAccount othersAccount=new OthersAccount(account.getFirstName(),account.getLastName(),account.getUsername(),account.getLocation()
-                ,account.getBio(), account.getMyPosts(), account.getFollowers(), account.getFollowers(), account.getProfileImage());
-        account.Unfollow(othersAccount);
-        Server.AllProfiles.get(UnFollowedUsername).getFollowers().remove(account);
+        Account Unfollowedaccount=Server.AllProfiles.get(UnFollowedUsername);
+        Account FollowerAccount=Server.AllProfiles.get(FollowerUsername);
+        OthersAccount othersAccount=new OthersAccount(Unfollowedaccount.getFirstName(),Unfollowedaccount.getLastName(),Unfollowedaccount.getUsername(),Unfollowedaccount.getLocation()
+                ,Unfollowedaccount.getBio(), Unfollowedaccount.getMyPosts(), Unfollowedaccount.getFollowers(), Unfollowedaccount.getFollowers(), Unfollowedaccount.getProfileImage());
+        FollowerAccount.Unfollow(othersAccount);
+        Unfollowedaccount.getFollowers().remove(FollowerAccount);
         DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(FollowerUsername));
         DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(UnFollowedUsername));
     }

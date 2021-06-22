@@ -73,6 +73,18 @@ public class Post implements Serializable {
         return like;
     }
 
+    public void setLike(Like like) {
+        this.like = like;
+    }
+
+    public void setDateAndTime(String dateAndTime) {
+        DateAndTime = dateAndTime;
+    }
+
+    public void setMiliTime(long miliTime) {
+        MiliTime = miliTime;
+    }
+
     public String getWriterUsername() {
         return WriterUsername;
     }

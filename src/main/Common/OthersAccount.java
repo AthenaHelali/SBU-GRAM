@@ -4,6 +4,8 @@ import main.Common.Message.Message;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class OthersAccount implements Serializable {
     private String FirstName;
@@ -63,5 +65,20 @@ public class OthersAccount implements Serializable {
 
     public byte[] getProfileImage() {
         return profileImage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OthersAccount that = (OthersAccount) o;
+        return Objects.equals(Username, that.Username) ;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(FirstName, LastName, Username, location, bio, Posts, Following, Followers);
+        result = 31 * result + Arrays.hashCode(profileImage);
+        return result;
     }
 }

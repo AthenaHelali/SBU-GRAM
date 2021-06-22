@@ -78,8 +78,6 @@ public class SignUpController {
         String firstname = Firstname.getText();
         String lastname = Lastname.getText();
         String email = Email.getText();
-        String PassWordRegex="\\w";
-
         if (passwordField.isVisible())
             Password = passwordField.getText().trim();
         else
@@ -97,7 +95,7 @@ public class SignUpController {
             if(usernameAlreadyTaken.isVisible())
                 usernameAlreadyTaken.setVisible(false);
         }
-        if(Password==null|Password.length()<8){
+        if(Password==null|Password.length()<8|!Pattern.matches("[a-zA-Z_0-9]+",Password)){
             invalidPassword.setVisible(true);
             Password=null;
         }else {

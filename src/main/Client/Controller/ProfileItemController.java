@@ -10,9 +10,6 @@ import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
 import main.Common.Message.FollowMessage;
-import main.Common.Message.UpdateDataMessage;
-import main.Common.Message.UpdateProfileMessage;
-import main.Common.Message.getAccountbyeUsernameMessage;
 import main.Common.OthersAccount;
 
 import java.io.ByteArrayInputStream;
@@ -63,12 +60,6 @@ public class ProfileItemController {
        following.setVisible(true);
     }
     public void ToPage(ActionEvent actionEvent) {
-        PostDetailsController.CurrentOtherAccount=othersAccount;
-        try {
-            new PageLoader().load("OthersPage");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 

@@ -2,6 +2,7 @@ package main.server;
 
 import main.Common.Account;
 import main.Common.Message.*;
+import main.Common.Post;
 
 import java.io.*;
 import java.net.Socket;
@@ -88,6 +89,7 @@ public class ClientHandler implements Runnable {
                     answerMessage = new AnswerMessage();
                     timelinePostsMessage timelinePostsMessage = (timelinePostsMessage) receivedMessage;
                     answerMessage.setPosts(timelinePostsMessage.Handle(Server.AllProfiles));
+                    ArrayList<Post>posts=answerMessage.getPosts();
                     OutPut.writeObject(answerMessage);
                 }else if(receivedMessage instanceof GetProfileImageMessage){
                     answerMessage=new AnswerMessage();

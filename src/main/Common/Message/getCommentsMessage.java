@@ -10,6 +10,7 @@ import java.util.Map;
 public class getCommentsMessage implements Message {
     private String PostWriterUsername;
     private String PostTitle;
+    private ArrayList<Comment>comments;
 
     public getCommentsMessage(String postWriterUsername, String postTitle) {
         PostWriterUsername = postWriterUsername;
@@ -26,9 +27,11 @@ public class getCommentsMessage implements Message {
     public ArrayList<Comment>Handle(Map<String, Account>map){
         ArrayList<Post>posts=map.get(PostWriterUsername).getMyPosts();
         for (Post post:posts){
-            if(post.getTitle().equals(PostTitle))
-                return post.getComments();
+            if(post.getTitle().equals(PostTitle)) {
+                comments = new ArrayList<>(post.getComments());
+                break;
+            }
         }
-        return null;
+        return comments;
     }
 }

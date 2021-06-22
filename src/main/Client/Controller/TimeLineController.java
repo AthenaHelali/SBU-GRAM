@@ -2,6 +2,7 @@ package main.Client.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,19 +16,18 @@ import main.Common.Message.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TimeLineController {
     public ListView<Post> postList;
     public ImageView ProfileImage;
     public Label Username;
     public ImageView defultProfileImage;
-    private ArrayList<Post> posts;
+    private ArrayList<Post> posts=new ArrayList<>();
 
     @FXML
     public void initialize() {
+        mainPage.currentAccount=ToServer.sendToServer(new GetMyAccountMessage(mainPage.currentAccount.getUsername())).getAccount();
         posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
-        Collections.sort(posts,(a,b)->a.getMiliTime()-b.getMiliTime()>0?-1:a.getMiliTime()-b.getMiliTime()==0?0:1);
         if (mainPage.currentAccount.getProfileImage() != null) {
             ProfileImage.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             ProfileImage.setVisible(true);
@@ -38,8 +38,6 @@ public class TimeLineController {
         postList.setCellFactory(postList -> new PostItem());
     }
 
-
-    //this function is usable for uncustomized_cell listview of strings
     public void showPost(MouseEvent mouseEvent) {
         Post post = postList.getSelectionModel().getSelectedItem();
 

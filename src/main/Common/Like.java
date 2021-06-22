@@ -20,6 +20,14 @@ public class Like implements Serializable {
         return numberOfLikes;
     }
 
+    public void setWhoLiked(ArrayList<Account> whoLiked) {
+        WhoLiked = whoLiked;
+    }
+
+    public void setNumberOfLikes(int numberOfLikes) {
+        this.numberOfLikes = numberOfLikes;
+    }
+
     public void LikePost(Account account) {
         this.numberOfLikes++;
         WhoLiked.add(account);
