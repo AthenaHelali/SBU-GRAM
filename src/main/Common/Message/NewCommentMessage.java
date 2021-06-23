@@ -22,6 +22,10 @@ public class NewCommentMessage implements Message {
         return PostWriter;
     }
 
+    public String getPostTitle() {
+        return PostTitle;
+    }
+
     public void Handle(Map<String, Account> map) {
         ArrayList<Post> posts = map.get(PostWriter).getMyPosts();
         for (Post post : posts) {

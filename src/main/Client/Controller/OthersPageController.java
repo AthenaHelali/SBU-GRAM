@@ -45,7 +45,7 @@ public class OthersPageController {
                 return (int)(o1.getMiliTime()-o2.getMiliTime());
             }
         });
-        if(mainPage.currentAccount.getProfileImage()!=null) {
+        if(PostDetailsController.CurrentOtherAccount.getProfileImage()!=null) {
             ProfileImage2.setImage(new Image(new ByteArrayInputStream(PostDetailsController.CurrentOtherAccount.getProfileImage())));
             ProfileImage2.setVisible(true);
             defaultProfileImage1.setVisible(false);

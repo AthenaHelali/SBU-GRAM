@@ -1,6 +1,7 @@
 package main.server;
 
 import main.Common.Account;
+import main.Common.DateTime;
 import main.Common.Message.*;
 import main.Common.Post;
 
@@ -14,6 +15,7 @@ public class ClientHandler implements Runnable {
     final private ObjectInputStream InPut;
     private AtomicInteger usersCount;
     private boolean IsOnline;
+    private String username;
 
     public ClientHandler(Socket socket, AtomicInteger usersCount)
             throws IOException {
@@ -44,7 +46,9 @@ public class ClientHandler implements Runnable {
                     answerMessage.setAccount(loginMessage.Handle(Server.AllProfiles));
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
-                    System.out.println("[Login]" + "[" + loginMessage.getUsername() + "]");
+                    username=loginMessage.getUsername();
+                    System.out.println(username +" login" );
+                    System.out.println(DateTime.getTime());
                 } else if (receivedMessage instanceof SignUpMessage) {
                     answerMessage = new AnswerMessage();
                     SignUpMessage signUpMessage = (SignUpMessage) receivedMessage;
@@ -52,14 +56,19 @@ public class ClientHandler implements Runnable {
                     answerMessage.setValue(true);
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    username=signUpMessage.getProfile().getUsername();
                     DataBase.getDataBase().SaveProfile(signUpMessage.getProfile());
-                    System.out.println("[" + signUpMessage.getProfile().getUsername() + "] rgister [account image addres(todo)]");
+                    System.out.println( signUpMessage.getProfile().getUsername() + " rgister [account image addres(todo)]");
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof LikeMessage) {
                     answerMessage = new AnswerMessage();
                     LikeMessage likeMessage = (LikeMessage) receivedMessage;
                     answerMessage.setValue(API.Like(likeMessage.post, Server.AllProfiles.get(likeMessage.WhoLiked)));
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    System.out.println(username+" like");
+                    System.out.println(likeMessage.post.getWriterUsername()+" "+likeMessage.post.getTitle());
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof NewPostMessage) {
                     answerMessage = new AnswerMessage();
                     NewPostMessage newPostMessage = (NewPostMessage) receivedMessage;
@@ -67,12 +76,17 @@ public class ClientHandler implements Runnable {
                     DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(newPostMessage.getNewPost().getWriterUsername()));
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    System.out.println(username+" publish");
+                    System.out.println(newPostMessage.getNewPost().getTitle()+" "+"[ file address/todo] "+username);
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof LogOutMessage) {
                     IsOnline = false;
                     answerMessage = new AnswerMessage();
                     answerMessage.setValue(true);
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    System.out.println(username+ "logout");
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof UpdateProfileMessage) {
                     answerMessage = new AnswerMessage();
                     UpdateProfileMessage updateProfileMessage = (UpdateProfileMessage) receivedMessage;
@@ -81,6 +95,9 @@ public class ClientHandler implements Runnable {
                     answerMessage.setValue(true);
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    System.out.println(username+" update info");
+                    System.out.println("[profile image address todo]");
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof GetAllProfilesMessage) {
                     answerMessage = new AnswerMessage();
                     GetAllProfilesMessage getAllProfilesMessage = (GetAllProfilesMessage) receivedMessage;
@@ -93,6 +110,9 @@ public class ClientHandler implements Runnable {
                     API.Follow(followMessage.getFollower(), followMessage.getFollowedUser());
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    System.out.println(username+" Follow");
+                    System.out.println(followMessage.getFollowedUser());
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof timelinePostsMessage) {
                     answerMessage = new AnswerMessage();
                     timelinePostsMessage timelinePostsMessage = (timelinePostsMessage) receivedMessage;
@@ -100,6 +120,8 @@ public class ClientHandler implements Runnable {
                     ArrayList<Post> posts = answerMessage.getPosts();
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                    System.out.println(username+" get posts list");
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof GetProfileImageMessage) {
                     answerMessage = new AnswerMessage();
                     answerMessage.setProfileImage(Server.AllProfiles.get(((GetProfileImageMessage) receivedMessage).getUsername()).getProfileImage());
@@ -119,13 +141,18 @@ public class ClientHandler implements Runnable {
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
                     DataBase.getDataBase().UpdateProfile(Server.AllProfiles.get(newCommentMessage.getPostWriter()));
+                    System.out.println(username+" Comment");
+                    System.out.println(newCommentMessage.getPostTitle());
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof getAccountbyeUsernameMessage) {
                     answerMessage = new AnswerMessage();
                     getAccountbyeUsernameMessage accountbyeUsernameMessage = (getAccountbyeUsernameMessage) receivedMessage;
                     answerMessage.setOtherAccount(accountbyeUsernameMessage.Handle(Server.AllProfiles));
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
-
+                    System.out.println(username+" get info "+accountbyeUsernameMessage.getUsername());
+                    System.out.println(accountbyeUsernameMessage.getUsername()+" [profile image address todo]");
+                    System.out.println(DateTime.getTime());
                 } else if (receivedMessage instanceof MyPostsMessage) {
                     answerMessage = new AnswerMessage();
                     MyPostsMessage myPostsMessage = (MyPostsMessage) receivedMessage;
@@ -146,7 +173,9 @@ public class ClientHandler implements Runnable {
                     API.UnFollow(unfollowMessage.getFollower(), unfollowMessage.getUnfollowedUser());
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
-
+                    System.out.println(username+"  Unfollow");
+                    System.out.println(unfollowMessage.getUnfollowedUser());
+                    System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof forgetPasswordMessage) {
                     answerMessage = new AnswerMessage();
                     forgetPasswordMessage passwordMessage = (forgetPasswordMessage) receivedMessage;
@@ -179,8 +208,12 @@ public class ClientHandler implements Runnable {
                     OutPut.writeObject(answerMessage);
                 }else if(receivedMessage instanceof repostMessage){
                     answerMessage=new AnswerMessage();
-                    ((repostMessage)receivedMessage).Handle(Server.AllProfiles);
+                    repostMessage repostmessage=(repostMessage)receivedMessage;
+                    repostmessage.Handle(Server.AllProfiles);
                     OutPut.writeObject(answerMessage);
+                    System.out.println(username+" repost");
+                    System.out.println(repostmessage.getPostWriterUsername()+" "+repostmessage.getPostTitle());
+                    System.out.println(DateTime.getTime());
                 }
 
             } catch (IOException e) {

@@ -14,6 +14,19 @@ public class repostMessage implements Message{
         PostWriterUsername = postWriterUsername;
         this.repostedUsername = repostedUsername;
     }
+
+    public String getPostTitle() {
+        return PostTitle;
+    }
+
+    public String getPostWriterUsername() {
+        return PostWriterUsername;
+    }
+
+    public String getRepostedUsername() {
+        return repostedUsername;
+    }
+
     public void Handle(Map<String, Account>map){
         Post post=null;
         for (Post post1:map.get(PostWriterUsername).getMyPosts()){
