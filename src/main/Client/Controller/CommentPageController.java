@@ -14,10 +14,13 @@ import main.Client.model.mainPage;
 import main.Common.Comment;
 import main.Common.Message.NewCommentMessage;
 import main.Common.Message.getCommentsMessage;
+import main.Common.Post;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CommentPageController {
     public ImageView defaultImage;
@@ -29,7 +32,13 @@ public class CommentPageController {
     public void initialize() {
         comments= ToServer.sendToServer(new getCommentsMessage(PostItemController.CurrentPost.getWriterUsername()
                 ,PostItemController.CurrentPost.getTitle())).getComments();
-        Collections.sort(comments,(a,b)->a.getMiliTime()-b.getMiliTime()>0?-1:a.getMiliTime()-b.getMiliTime()==0?0:1);
+        if(comments!=null){
+        comments.sort(new Comparator<Comment>() {
+            @Override
+            public int compare(Comment o1, Comment o2) {
+                return (int)(o2.getMiliTime()-o1.getMiliTime());
+            }
+        });}
         if(mainPage.currentAccount.getProfileImage()!=null){
             Image.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             Image.setVisible(true);

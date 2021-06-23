@@ -9,11 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
-import main.Common.Message.GetProfileImageMessage;
+import main.Common.Message.*;
 import main.Client.Controller.PostItemController;
-import main.Common.Message.LikeMessage;
-import main.Common.Message.UpdateProfileMessage;
-import main.Common.Message.getAccountbyeUsernameMessage;
 import main.Common.OthersAccount;
 
 import java.io.ByteArrayInputStream;
@@ -49,8 +46,9 @@ public class PostDetailsController {
         dateAndTime.setText(PostItemController.CurrentPost.getDateAndTime());
         username.setText(PostItemController.CurrentPost.getWriterUsername());
         title.setText(PostItemController.CurrentPost.getTitle());
-        LikesNumber.setText(String.valueOf(PostItemController.CurrentPost.getLike().getNumberOfLikes()));
-        commentsNumber.setText(String.valueOf(PostItemController.CurrentPost.getComments().size()));
+        LikesNumber.setText(String.valueOf(ToServer.sendToServer(new getLikesMessage(PostItemController.CurrentPost.getTitle(),PostItemController.CurrentPost.getWriterUsername())).getLikesNumber()));
+        commentsNumber.setText(String.valueOf(ToServer.sendToServer(new getCommentNumberMessage
+                (PostItemController.CurrentPost.getTitle(),PostItemController.CurrentPost.getWriterUsername())).getCommentNumber()));
         if(mainPage.currentAccount.getYouLiked().contains(PostItemController.CurrentPost)){
             afterLike.setVisible(true);
             beforLike.setVisible(false);

@@ -17,6 +17,23 @@ public class AnswerMessage implements Message{
     private OthersAccount otherAccount;
     private String Password;
     private int Followers;
+    private int likesNumber;
+    public void setLikesNumber(int likesNumber) {
+        this.likesNumber = likesNumber;
+    }
+
+    public int getLikesNumber() {
+        return likesNumber;
+    }
+    public void setCommentNumber(int commentNumber) {
+        CommentNumber = commentNumber;
+    }
+
+    public int getCommentNumber() {
+        return CommentNumber;
+    }
+
+    private int CommentNumber;
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;

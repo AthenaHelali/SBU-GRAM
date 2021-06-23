@@ -133,13 +133,20 @@ public class ClientHandler implements Runnable {
                     if (answerMessage.getValue())
                         answerMessage.setPassword(Server.AllProfiles.get(passwordMessage.getUsername()).getPassword());
                     OutPut.writeObject(answerMessage);
-                }
-                    if(receivedMessage instanceof getFollowersNumberMessage){
+                } else if(receivedMessage instanceof getFollowersNumberMessage){
                         answerMessage=new AnswerMessage();
                         getFollowersNumberMessage followersNumberMessage=(getFollowersNumberMessage) receivedMessage;
                         answerMessage.setFollowers(Server.AllProfiles.get(followersNumberMessage.getUsername()).getFollowers().size());
                         OutPut.writeObject(answerMessage);
-                    }
+                    }else if(receivedMessage instanceof getCommentNumberMessage){
+                    answerMessage=new AnswerMessage();
+                    answerMessage.setCommentNumber(((getCommentNumberMessage)receivedMessage).Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof getLikesMessage){
+                    answerMessage=new AnswerMessage();
+                    answerMessage.setLikesNumber(((getLikesMessage)receivedMessage).Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();

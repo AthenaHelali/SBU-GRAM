@@ -9,9 +9,7 @@ import main.Common.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import main.Common.Message.LikeMessage;
-import main.Common.Message.GetProfileImageMessage;
-import main.Common.Message.UpdateProfileMessage;
+import main.Common.Message.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -40,8 +38,9 @@ public class PostItemController {
         writerImage.setImage(new Image(new ByteArrayInputStream(PImage)));
         username.setText(CurrentPost.getWriterUsername());
         title.setText(CurrentPost.getTitle());
-        LikesNumber.setText(String.valueOf(CurrentPost.getLike().getNumberOfLikes()));
-        commentsNumber.setText(String.valueOf(CurrentPost.getComments().size()));
+        LikesNumber.setText(String.valueOf(ToServer.sendToServer(new getLikesMessage(CurrentPost.getTitle(),CurrentPost.getWriterUsername())).getLikesNumber()));
+        commentsNumber.setText(String.valueOf(ToServer.sendToServer(new getCommentNumberMessage
+                (PostItemController.CurrentPost.getTitle(),PostItemController.CurrentPost.getWriterUsername())).getCommentNumber()));
         if(mainPage.currentAccount.getYouLiked().contains(CurrentPost)){
             afterLike.setVisible(true);
             beforLike.setVisible(false);
