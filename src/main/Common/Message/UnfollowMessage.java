@@ -1,7 +1,7 @@
 package main.Common.Message;
 
 public class UnfollowMessage implements Message {
-    public static final long serialVersionUID = 92345678L;
+    public static final long serialVersionUID = 122345678L;
     private String Follower;
     private String UnfollowedUser;
 

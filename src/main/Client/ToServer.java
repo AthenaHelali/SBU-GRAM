@@ -67,6 +67,7 @@ public class ToServer {
     public static AnswerMessage sendToServer(Message message){
         try {
             socketOut.writeObject(message);
+            socketOut.reset();
             return (AnswerMessage) socketIn.readObject();
         } catch (IOException e) {
             e.printStackTrace();

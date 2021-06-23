@@ -1,8 +1,6 @@
 package main.Common.Message;
-import main.Common.Account;
-import main.Common.Comment;
-import main.Common.Like;
-import main.Common.Post;
+import main.Common.*;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -19,11 +17,9 @@ public class timelinePostsMessage implements Message {
         return account;
     }
     public ArrayList<Post> Handle(Map<String,Account>map){
-        ArrayList<Account>accounts=new ArrayList<>(map.values());
-        ArrayList<String>Usernames;
-        for (Account ac:accounts){
-           if(ac.getFollowers().stream().map(a->a.getUsername()).anyMatch(a->a.equals(account))){
-               for (Post post:ac.getMyPosts()) {
+        Account Ac=map.get(account);
+        for (OthersAccount ac:Ac.getFollowing()){
+               for (Post post:map.get(ac.getUsername()).getMyPosts()) {
                    p=new Post(post.getTitle(),post.getWriterUsername(),post.getDescription());
                    p.setComments(post.getComments());
                    p.setWriterImage(post.getWriterImage());
@@ -36,7 +32,6 @@ public class timelinePostsMessage implements Message {
                }
 
             }
-        }
         for (Post post:map.get(account).getMyPosts()) {
             p=new Post(post.getTitle(),post.getWriterUsername(),post.getDescription());
             ArrayList<Comment>comments=new ArrayList<>(post.getComments());
@@ -50,7 +45,8 @@ public class timelinePostsMessage implements Message {
             p.setMiliTime(post.getMiliTime());
             p.setDateAndTime(post.getDateAndTime());
             p.setPostImage(post.getPostImage());
-            posts.add(p);        }
+            posts.add(p);
+        }
         return posts;
 
     }
