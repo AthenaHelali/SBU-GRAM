@@ -18,7 +18,9 @@ import main.Common.Post;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class OthersPageController {
     public Label bio;
@@ -37,8 +39,12 @@ public class OthersPageController {
     ArrayList<Post>posts;
     public void initialize() {
         posts=PostDetailsController.CurrentOtherAccount.getPosts();
-        Collections.sort(posts,(a, b)->a.getMiliTime()-b.getMiliTime()>0?-1:a.getMiliTime()-b.getMiliTime()==0?0:1);
-
+        posts.sort(new Comparator<Post>() {
+            @Override
+            public int compare(Post o1, Post o2) {
+                return (int)(o1.getMiliTime()-o2.getMiliTime());
+            }
+        });
         if(mainPage.currentAccount.getProfileImage()!=null) {
             ProfileImage2.setImage(new Image(new ByteArrayInputStream(PostDetailsController.CurrentOtherAccount.getProfileImage())));
             ProfileImage2.setVisible(true);
@@ -82,10 +88,17 @@ public class OthersPageController {
         FollowingButton.setVisible(true);
     }
 
-    public void Following(ActionEvent actionEvent) {
+    public void Unfollow(ActionEvent actionEvent) {
         ToServer.sendToServer(new UnfollowMessage(mainPage.currentAccount.getUsername(),PostDetailsController.CurrentOtherAccount.getUsername()));
         mainPage.currentAccount.Unfollow(PostDetailsController.CurrentOtherAccount);
         FollowButton.setVisible(true);
         FollowingButton.setVisible(false);
+        try {
+            new PageLoader().load("othersPage");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

@@ -47,6 +47,8 @@ public class SignUpController {
     public Label emptyFirstname;
     public Label emptyUsername;
     public Label emptyEmail;
+    public TextField question;
+    public Label emptyQuestion;
 
     public void ToLogin(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Login");
@@ -72,6 +74,7 @@ public class SignUpController {
     }
 
     public void SignUp(ActionEvent actionEvent) {
+        String Question=question.getText();
         String Username = usernameField.getText();
         String Password;
         String ConfirmPassword;
@@ -132,9 +135,14 @@ public class SignUpController {
             if(emptyEmail.isVisible())
                 emptyEmail.setVisible(false);
         }
+        if(Question==null|Question.length()==0){
+            emptyQuestion.setVisible(true);
+            Question=null;
+        }else if(emptyQuestion.isVisible())
+            emptyQuestion.setVisible(false);
 
-        if (Username!=null&&firstname!=null&&lastname!=null&&email!=null&&Password!=null) {
-            Account account = new Account(firstname, lastname, Username, Password, email);
+        if (Username!=null&&firstname!=null&&lastname!=null&&email!=null&&Password!=null&&Question!=null) {
+            Account account = new Account(firstname, lastname, Username, Password, email,Question);
             if (profileImage!=null)
             account.setProfileImage(profileImage);
             if (ToServer.sendToServer(new SignUpMessage(account)).getValue()) {

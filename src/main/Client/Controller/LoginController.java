@@ -66,4 +66,13 @@ public class LoginController {
     public void signUp(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("signUp");
     }
+
+    public void ToForgetPass(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("forgetPass");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

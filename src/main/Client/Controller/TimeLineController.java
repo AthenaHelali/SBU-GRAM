@@ -16,6 +16,7 @@ import main.Common.Message.*;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class TimeLineController {
     public ListView<Post> postList;
@@ -26,8 +27,13 @@ public class TimeLineController {
 
     @FXML
     public void initialize() {
-        mainPage.currentAccount=ToServer.sendToServer(new GetMyAccountMessage(mainPage.currentAccount.getUsername())).getAccount();
         posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
+        posts.sort(new Comparator<Post>() {
+            @Override
+            public int compare(Post o1, Post o2) {
+                return (int)(o2.getMiliTime()-o1.getMiliTime());
+            }
+        });
         if (mainPage.currentAccount.getProfileImage() != null) {
             ProfileImage.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             ProfileImage.setVisible(true);

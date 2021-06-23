@@ -14,12 +14,14 @@ import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
 import main.Common.Message.GetMyAccountMessage;
 import main.Common.Message.MyPostsMessage;
+import main.Common.Message.getFollowersNumberMessage;
 import main.Common.Post;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class pageController {
 
@@ -38,10 +40,13 @@ public class pageController {
 
     @FXML
     public void initialize() {
-        mainPage.currentAccount=ToServer.sendToServer(new GetMyAccountMessage(mainPage.currentAccount.getUsername())).getAccount();
         posts= ToServer.sendToServer(new MyPostsMessage(mainPage.currentAccount.getUsername())).getPosts();
-        Collections.sort(posts,(a, b)->a.getMiliTime()-b.getMiliTime()>0?-1:a.getMiliTime()-b.getMiliTime()==0?0:1);
-
+        posts.sort(new Comparator<Post>() {
+            @Override
+            public int compare(Post o1, Post o2) {
+                return (int)(o2.getMiliTime()-o1.getMiliTime());
+            }
+        });
         if(mainPage.currentAccount.getProfileImage()!=null) {
             ProfileImage1.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             ProfileImage1.setVisible(true);
@@ -50,9 +55,8 @@ public class pageController {
         Username1.setText(mainPage.currentAccount.getUsername());
         firstname.setText(mainPage.currentAccount.getFirstName());
         lastname.setText(mainPage.currentAccount.getLastName());
-        String temp = String.valueOf(mainPage.currentAccount.getFollowers().size());
-        Followers.setText(temp);
-        temp = String.valueOf(mainPage.currentAccount.getFollowing().size());
+        Followers.setText(String.valueOf(ToServer.sendToServer(new getFollowersNumberMessage(mainPage.currentAccount.getUsername())).getFollowers()));
+       String temp = String.valueOf(mainPage.currentAccount.getFollowing().size());
         Following.setText(temp);
         Posts.setText(String.valueOf(mainPage.currentAccount.getMyPosts().size()));
         if (mainPage.currentAccount.getLocation() != null)

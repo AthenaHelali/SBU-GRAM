@@ -18,6 +18,9 @@ public class Account implements Serializable {
     private String location;
     private String bio;
     private String Email;
+
+
+    private String PasswordQuestion;
     private ArrayList<Post> MyPosts;
     private ArrayList<OthersAccount> Following;
     private ArrayList<OthersAccount> Followers;
@@ -34,7 +37,8 @@ public class Account implements Serializable {
         this.profileImage = profileImage;
     }
 
-    public Account(String firstName, String lastName, String username, String password, String email) {
+    public Account(String firstName, String lastName, String username, String password, String email,String PasswordQ) {
+        PasswordQuestion=PasswordQ;
         FirstName = firstName;
         LastName = lastName;
         Username = username;
@@ -173,6 +177,14 @@ public class Account implements Serializable {
     public void setEmail(String email) {
         Email = email;
     }
+    public String getPasswordQuestion() {
+        return PasswordQuestion;
+    }
+
+    public void setPasswordQuestion(String passwordQuestion) {
+        PasswordQuestion = passwordQuestion;
+    }
+
 
     @Override
     public boolean equals(Object o) {

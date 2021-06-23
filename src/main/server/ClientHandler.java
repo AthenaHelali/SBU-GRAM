@@ -126,7 +126,21 @@ public class ClientHandler implements Runnable {
                     UnfollowMessage unfollowMessage=(UnfollowMessage) receivedMessage;
                     API.UnFollow(unfollowMessage.getFollower(), unfollowMessage.getUnfollowedUser());
                     OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof forgetPasswordMessage) {
+                    answerMessage = new AnswerMessage();
+                    forgetPasswordMessage passwordMessage = (forgetPasswordMessage) receivedMessage;
+                    answerMessage.setValue(passwordMessage.Handle(Server.AllProfiles));
+                    if (answerMessage.getValue())
+                        answerMessage.setPassword(Server.AllProfiles.get(passwordMessage.getUsername()).getPassword());
+                    OutPut.writeObject(answerMessage);
                 }
+                    if(receivedMessage instanceof getFollowersNumberMessage){
+                        answerMessage=new AnswerMessage();
+                        getFollowersNumberMessage followersNumberMessage=(getFollowersNumberMessage) receivedMessage;
+                        answerMessage.setFollowers(Server.AllProfiles.get(followersNumberMessage.getUsername()).getFollowers().size());
+                        OutPut.writeObject(answerMessage);
+                    }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

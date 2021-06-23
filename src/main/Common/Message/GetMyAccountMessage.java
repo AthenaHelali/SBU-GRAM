@@ -1,31 +1,36 @@
 package main.Common.Message;
 import main.Common.Account;
+import main.Common.OthersAccount;
+import main.Common.Post;
 
-import java.util.ArrayList;
 import java.util.Map;
 
-public class GetMyAccountMessage implements Message{
-    private Account Myaccount;
+public class GetMyAccountMessage implements Message {
+    String Username;
+    private Account account;
 
-    private String Username;
     public GetMyAccountMessage(String username) {
         Username = username;
     }
-    public Account Handle(Map<String, Account>map){
-        Account account=map.get(Username);
-        this.Myaccount=new Account(account.getFirstName(), account.getLastName(), account.getUsername(), account.getPassword(), account.getEmail());
-        Myaccount.setLocation(account.getLocation());
-        Myaccount.setBio(account.getBio());
-        Myaccount.setProfileImage(account.getProfileImage());
-        Myaccount.setFollowing(new ArrayList<>(account.getFollowing()));
-        Myaccount.setFollowers(new ArrayList<>(account.getFollowers()));
-        Myaccount.setYouLiked(new ArrayList<>(account.getYouLiked()));
-        Myaccount.setMyPosts(new ArrayList<>(account.getMyPosts()));
-        Myaccount.setPassword(account.getPassword());
 
-        return Myaccount;
+    public Account Handle(Map<String, Account> map) {
+        Account temp = map.get(Username);
+
+        account = new Account(temp.getFirstName(),temp.getLastName(),temp.getUsername(),temp.getPassword(),temp.getEmail(),temp.getPasswordQuestion());
+        for (Post post:temp.getMyPosts()){
+            account.getMyPosts().add(post);
+        }
+        for (OthersAccount account:temp.getFollowers()){
+            this.account.getFollowers().add(account);
+        }
+        for (OthersAccount account:temp.getFollowing()){
+            this.account.getFollowing().add(account);
+        }
+        for (Post post:account.getYouLiked()){
+            this.account.getYouLiked().add(post);
+        }
+        return account;
     }
-
 
 
 }

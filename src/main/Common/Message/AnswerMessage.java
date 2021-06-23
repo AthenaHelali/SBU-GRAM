@@ -15,6 +15,8 @@ public class AnswerMessage implements Message{
     private ArrayList<OthersAccount>othersAccounts;
     private ArrayList<Comment>comments;
     private OthersAccount otherAccount;
+    private String Password;
+    private int Followers;
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
@@ -67,12 +69,28 @@ public class AnswerMessage implements Message{
         return value;
     }
 
+    public void setFollowers(int followers) {
+        Followers = followers;
+    }
+
+    public int getFollowers() {
+        return Followers;
+    }
+
     public ArrayList<Post> getPosts() {
         return posts;
     }
 
     public void setPosts(ArrayList<Post> posts) {
         this.posts = posts;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public String getPassword() {
+        return Password;
     }
 
     public void Handle() {

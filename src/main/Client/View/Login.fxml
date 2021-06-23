@@ -49,7 +49,7 @@
             <Font name="Ebrima Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="ForgetPassword_Field" layoutX="148.0" layoutY="367.0" prefHeight="17.0" prefWidth="101.0" text="Forget password?" textFill="#d1cccc">
+      <Label fx:id="ForgetPassword_Field" layoutX="148.0" layoutY="367.0" onMouseClicked="#ToForgetPass" prefHeight="17.0" prefWidth="101.0" text="Forget password?" textFill="#d1cccc">
          <font>
             <Font name="Ebrima" size="12.0" />
          </font>

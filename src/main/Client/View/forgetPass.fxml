@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #1F2041;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Client.Controller.forgetPassController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="287.0" layoutX="50.0" layoutY="66.0" stroke="WHITE" strokeType="INSIDE" width="298.0" />
+      <TextField fx:id="username" layoutX="110.0" layoutY="142.0" prefHeight="25.0" prefWidth="180.0" promptText="username" style="-fx-background-color: #4B3F72;" />
+      <TextField fx:id="question" layoutX="110.0" layoutY="232.0" prefHeight="25.0" prefWidth="180.0" promptText=" childhood hero" style="-fx-background-color: #4B3F72;" />
+      <Label layoutX="110.0" layoutY="112.0" text="Enter your username" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="112.0" layoutY="207.0" text="Who was your childhood hero?" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="ShowPassButton" buttonType="RAISED" layoutX="79.0" layoutY="288.0" onAction="#ShowPass" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #4B3F72;" text="Show my password" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="108.0" layoutX="50.0" layoutY="405.0" stroke="WHITE" strokeType="INSIDE" visible="false" width="298.0" />
+      <TextField fx:id="MyPassword" layoutX="99.0" layoutY="446.0" prefHeight="26.0" prefWidth="199.0" promptText="password" style="-fx-background-color: #4B3F72;" visible="false" />
+      <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#toLogin" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/athena/Desktop/SBU%20GRAM/images/back.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="WrongUsername" layoutX="110.0" layoutY="168.0" text="username does not exist!" textFill="WHITE" visible="false">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="wrongAnswer" layoutX="115.0" layoutY="258.0" text="answer doesn't match!" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Italic" size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
