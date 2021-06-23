@@ -173,6 +173,14 @@ public class ClientHandler implements Runnable {
                     answerMessage.setLikesNumber(((getLikesMessage) receivedMessage).Handle(Server.AllProfiles));
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
+                }else if(receivedMessage instanceof GetRepostNumberMessage){
+                    answerMessage=new AnswerMessage();
+                    answerMessage.setRepostNum(((GetRepostNumberMessage) receivedMessage).Handle(Server.AllProfiles));
+                    OutPut.writeObject(answerMessage);
+                }else if(receivedMessage instanceof repostMessage){
+                    answerMessage=new AnswerMessage();
+                    ((repostMessage)receivedMessage).Handle(Server.AllProfiles);
+                    OutPut.writeObject(answerMessage);
                 }
 
             } catch (IOException e) {

@@ -18,6 +18,16 @@ public class AnswerMessage implements Message{
     private String Password;
     private int Followers;
     private int likesNumber;
+    private  int repostNum;
+
+    public void setRepostNum(int repostNum) {
+        this.repostNum = repostNum;
+    }
+
+    public int getRepostNum() {
+        return repostNum;
+    }
+
     public void setLikesNumber(int likesNumber) {
         this.likesNumber = likesNumber;
     }

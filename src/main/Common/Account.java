@@ -27,7 +27,6 @@ public class Account implements Serializable {
     private ArrayList<Post> YouLiked;
     private byte[] profileImage;
     private Map<Account, List<Message>> directChat;
-
     public byte[] getProfileImage() {
         return profileImage;
     }

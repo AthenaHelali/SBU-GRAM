@@ -45,7 +45,8 @@ public class PostItemController {
             afterLike.setVisible(true);
             beforLike.setVisible(false);
         }
-        repotsNumber.setText(String.valueOf(CurrentPost.getRepostNum()));
+        repotsNumber.setText(String.valueOf(ToServer.sendToServer
+                (new GetRepostNumberMessage(CurrentPost.getTitle(),CurrentPost.getWriterUsername())).getRepostNum()));
         return root;
     }
 
@@ -82,7 +83,7 @@ public class PostItemController {
         if(!mainPage.currentAccount.getMyPosts().contains(CurrentPost)) {
             CurrentPost.setRepostNum(CurrentPost.getRepostNum() + 1);
             mainPage.currentAccount.addMyPosts(CurrentPost);
-            ToServer.sendToServer(new UpdateProfileMessage(mainPage.currentAccount));
+            ToServer.sendToServer(new repostMessage(CurrentPost.getTitle(),CurrentPost.getWriterUsername(),mainPage.currentAccount.getUsername()));
         }
 
     }

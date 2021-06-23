@@ -40,14 +40,16 @@ public class pageController {
 
     @FXML
     public void initialize() {
-        posts= ToServer.sendToServer(new MyPostsMessage(mainPage.currentAccount.getUsername())).getPosts();
-        posts.sort(new Comparator<Post>() {
-            @Override
-            public int compare(Post o1, Post o2) {
-                return (int)(o2.getMiliTime()-o1.getMiliTime());
-            }
-        });
-        if(mainPage.currentAccount.getProfileImage()!=null) {
+        posts = ToServer.sendToServer(new MyPostsMessage(mainPage.currentAccount.getUsername())).getPosts();
+        if (posts != null) {
+            posts.sort(new Comparator<Post>() {
+                @Override
+                public int compare(Post o1, Post o2) {
+                    return (int) (o2.getMiliTime() - o1.getMiliTime());
+                }
+            });
+        }
+        if (mainPage.currentAccount.getProfileImage() != null) {
             ProfileImage1.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             ProfileImage1.setVisible(true);
             defaultProfileImage1.setVisible(false);
@@ -56,7 +58,7 @@ public class pageController {
         firstname.setText(mainPage.currentAccount.getFirstName());
         lastname.setText(mainPage.currentAccount.getLastName());
         Followers.setText(String.valueOf(ToServer.sendToServer(new getFollowersNumberMessage(mainPage.currentAccount.getUsername())).getFollowers()));
-       String temp = String.valueOf(mainPage.currentAccount.getFollowing().size());
+        String temp = String.valueOf(mainPage.currentAccount.getFollowing().size());
         Following.setText(temp);
         Posts.setText(String.valueOf(mainPage.currentAccount.getMyPosts().size()));
         if (mainPage.currentAccount.getLocation() != null)

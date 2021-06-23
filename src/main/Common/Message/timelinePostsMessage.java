@@ -33,6 +33,7 @@ public class timelinePostsMessage implements Message {
 
             }
         for (Post post:map.get(account).getMyPosts()) {
+            if(post.getWriterUsername().equals(account)){
             p=new Post(post.getTitle(),post.getWriterUsername(),post.getDescription());
             ArrayList<Comment>comments=new ArrayList<>(post.getComments());
             p.setComments(comments);
@@ -46,7 +47,7 @@ public class timelinePostsMessage implements Message {
             p.setDateAndTime(post.getDateAndTime());
             p.setPostImage(post.getPostImage());
             posts.add(p);
-        }
+        }}
         return posts;
 
     }
