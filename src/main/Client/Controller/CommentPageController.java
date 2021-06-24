@@ -26,26 +26,27 @@ public class CommentPageController {
     public ImageView defaultImage;
     public ImageView Image;
     public TextField AddComment;
-    public ArrayList<Comment>comments;
+    public ArrayList<Comment> comments;
     public ListView CommentsList;
 
     public void initialize() {
-        comments= ToServer.sendToServer(new getCommentsMessage(PostItemController.CurrentPost.getWriterUsername()
-                ,PostItemController.CurrentPost.getTitle())).getComments();
-        if(comments!=null){
-        comments.sort(new Comparator<Comment>() {
-            @Override
-            public int compare(Comment o1, Comment o2) {
-                return (int)(o2.getMiliTime()-o1.getMiliTime());
-            }
-        });}
-        if(mainPage.currentAccount.getProfileImage()!=null){
+        comments = ToServer.sendToServer(new getCommentsMessage(PostItemController.CurrentPost.getWriterUsername()
+                , PostItemController.CurrentPost.getTitle())).getComments();
+        if (comments != null) {
+            comments.sort(new Comparator<Comment>() {
+                @Override
+                public int compare(Comment o1, Comment o2) {
+                    return (int) (o2.getMiliTime() - o1.getMiliTime());
+                }
+            });
+        }
+        if (mainPage.currentAccount.getProfileImage() != null) {
             Image.setImage(new Image(new ByteArrayInputStream(mainPage.currentAccount.getProfileImage())));
             Image.setVisible(true);
             defaultImage.setVisible(false);
         }
         CommentsList.setItems(FXCollections.observableArrayList(comments));
-       CommentsList.setCellFactory(CommentList -> new CommentItem());
+        CommentsList.setCellFactory(CommentList -> new CommentItem());
 
 
     }
@@ -60,9 +61,9 @@ public class CommentPageController {
     }
 
     public void SendComment(ActionEvent actionEvent) {
-        Comment comment=new Comment(mainPage.currentAccount.getUsername(),AddComment.getText().trim());
+        Comment comment = new Comment(mainPage.currentAccount.getUsername(), AddComment.getText().trim());
         PostItemController.CurrentPost.AddComent(comment);
-        ToServer.sendToServer(new NewCommentMessage(comment,PostItemController.CurrentPost.getTitle(),PostItemController.CurrentPost.getWriterUsername()));
+        ToServer.sendToServer(new NewCommentMessage(comment, PostItemController.CurrentPost.getTitle(), PostItemController.CurrentPost.getWriterUsername()));
         try {
             new PageLoader().load("commentPage");
         } catch (IOException e) {

@@ -26,10 +26,9 @@ public class LoginController {
     public void Login(ActionEvent actionEvent) throws IOException {
         String Username = Login_usernameField.getText();
         if (!ToServer.sendToServer(new UserExistMessage(Username)).getValue()) {
-            if(!WrongUsername.isVisible())
-            WrongUsername.setVisible(true);
-        }
-        else {
+            if (!WrongUsername.isVisible())
+                WrongUsername.setVisible(true);
+        } else {
             if (WrongUsername.isVisible())
                 WrongUsername.setVisible(false);
             String Password;
@@ -51,12 +50,11 @@ public class LoginController {
 
 
     public void ShowPassword(ActionEvent actionEvent) {
-        if(!Password_Visible.isVisible()){
+        if (!Password_Visible.isVisible()) {
             Password_Visible.setVisible(true);
             passwordField.setVisible(false);
             Password_Visible.setText(passwordField.getText());
-        }
-        else {
+        } else {
             Password_Visible.setVisible(false);
             passwordField.setVisible(true);
             passwordField.setText(Password_Visible.getText());

@@ -21,15 +21,16 @@ public class CommentItemController {
     public Label comment;
     public Comment cmt;
     public AnchorPane root;
-    public byte[]image=null;
+    public byte[] image = null;
 
     public CommentItemController(Comment comment) throws IOException {
         new PageLoader().load("CommentItem", this);
-        this.cmt=comment;
+        this.cmt = comment;
     }
+
     public AnchorPane init() {
-        image=ToServer.sendToServer(new GetProfileImageMessage(cmt.getWriterUsername())).getProfileImage();
-        if(image!=null){
+        image = ToServer.sendToServer(new GetProfileImageMessage(cmt.getWriterUsername())).getProfileImage();
+        if (image != null) {
             ProfileImage.setImage(new Image(new ByteArrayInputStream(image)));
             ProfileImage.setVisible(true);
             defaultImage.setVisible(false);

@@ -23,12 +23,12 @@ public class forgetPassController {
     public Label wrongAnswer;
 
     public void ShowPass(ActionEvent actionEvent) {
-        String User=username.getText();
-        String Question= question.getText();
+        String User = username.getText();
+        String Question = question.getText();
         if (!ToServer.sendToServer(new UserExistMessage(User)).getValue()) {
-            if(!WrongUsername.isVisible())
+            if (!WrongUsername.isVisible())
                 WrongUsername.setVisible(true);
-        }else {
+        } else {
             if (WrongUsername.isVisible())
                 WrongUsername.setVisible(false);
             if (!ToServer.sendToServer(new forgetPasswordMessage(User, Question)).getValue()) {

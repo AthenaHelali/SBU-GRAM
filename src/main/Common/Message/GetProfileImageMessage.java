@@ -2,7 +2,7 @@ package main.Common.Message;
 
 public class GetProfileImageMessage implements Message {
     private String Username;
-    private byte[]image;
+    private byte[] image;
 
     public GetProfileImageMessage(String username) {
         Username = username;

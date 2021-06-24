@@ -15,7 +15,7 @@ public class getCommentNumberMessage implements Message {
     }
 
     public int Handle(Map<String, Account> map) {
-        Post p=null;
+        Post p = null;
         for (Post post : map.get(postWriter).getMyPosts()) {
             if (post.getTitle().equals(postTitle)) {
                 p = post;

@@ -13,20 +13,22 @@ public class Post implements Serializable {
     private int repostNum;
     private ArrayList<Comment> comments;
     private String description;
-    private byte[]writerImage;
-    private byte[]PostImage=null;
+    private byte[] writerImage;
+    private byte[] PostImage = null;
     private String DateAndTime;
     private long MiliTime;
-    public Post(){}
+
+    public Post() {
+    }
 
     public Post(String title, String writerUsername, String description) {
-        MiliTime=DateTime.getMilli();
-        DateAndTime=DateTime.getTime();
-        like=new Like();
+        MiliTime = DateTime.getMilli();
+        DateAndTime = DateTime.getTime();
+        like = new Like();
         this.title = title;
         WriterUsername = writerUsername;
         this.description = description;
-        comments=new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     public void setRepostNum(int repostNum) {
@@ -45,16 +47,8 @@ public class Post implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setWriterUsername(String writerUsername) {
-        WriterUsername = writerUsername;
     }
 
     public byte[] getWriterImage() {
@@ -96,7 +90,8 @@ public class Post implements Serializable {
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
-    public void AddComent(Comment comment){
+
+    public void AddComent(Comment comment) {
         this.comments.add(comment);
     }
 
@@ -117,7 +112,7 @@ public class Post implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return  Objects.equals(title, post.title) && Objects.equals(WriterUsername, post.WriterUsername);
+        return Objects.equals(title, post.title) && Objects.equals(WriterUsername, post.WriterUsername);
     }
 
 }

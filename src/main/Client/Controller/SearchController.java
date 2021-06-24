@@ -14,15 +14,16 @@ import java.util.ArrayList;
 
 public class SearchController {
     public ListView ProfileList;
-    public ArrayList<OthersAccount>othersAccounts;
+    public ArrayList<OthersAccount> othersAccounts;
+
     @FXML
     public void initialize() {
-        othersAccounts= ToServer.sendToServer(new GetAllProfilesMessage()).getOthersAccounts();
+        othersAccounts = ToServer.sendToServer(new GetAllProfilesMessage()).getOthersAccounts();
         ProfileList.setItems(FXCollections.observableArrayList(othersAccounts));
         ProfileList.setCellFactory(ProfileList -> new ProfileItem());
     }
 
-    public void menue(MouseEvent mouseEvent){
+    public void menue(MouseEvent mouseEvent) {
         try {
             new PageLoader().load("menu");
         } catch (IOException e) {

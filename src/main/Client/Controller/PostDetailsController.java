@@ -10,7 +10,6 @@ import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
 import main.Common.Message.*;
-import main.Client.Controller.PostItemController;
 import main.Common.OthersAccount;
 
 import java.io.ByteArrayInputStream;

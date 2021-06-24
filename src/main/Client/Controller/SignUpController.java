@@ -74,7 +74,7 @@ public class SignUpController {
     }
 
     public void SignUp(ActionEvent actionEvent) {
-        String Question=question.getText();
+        String Question = question.getText();
         String Username = usernameField.getText();
         String Password;
         String ConfirmPassword;
@@ -91,60 +91,60 @@ public class SignUpController {
         else
             ConfirmPassword = ConfirmPasswordShow.getText();
 
-        if(ToServer.sendToServer(new UserExistMessage(Username)).getValue()){
+        if (ToServer.sendToServer(new UserExistMessage(Username)).getValue()) {
             usernameAlreadyTaken.setVisible(true);
-            Username=null;
-        }else {
-            if(usernameAlreadyTaken.isVisible())
+            Username = null;
+        } else {
+            if (usernameAlreadyTaken.isVisible())
                 usernameAlreadyTaken.setVisible(false);
         }
-        if(Password==null|Password.length()<8|!Pattern.matches("[a-zA-Z_0-9]+",Password)){
+        if (Password == null | Password.length() < 8 | !Pattern.matches("[a-zA-Z_0-9]+", Password)) {
             invalidPassword.setVisible(true);
-            Password=null;
-        }else {
-            if(invalidPassword.isVisible())
+            Password = null;
+        } else {
+            if (invalidPassword.isVisible())
                 invalidPassword.setVisible(false);
-            if(!Password.equals(ConfirmPassword)){
+            if (!Password.equals(ConfirmPassword)) {
                 PasswordDoesnotMatch.setVisible(true);
-                Password=null;
-            }else {
+                Password = null;
+            } else {
                 if (PasswordDoesnotMatch.isVisible()) {
                     PasswordDoesnotMatch.setVisible(false);
                 }
             }
         }
 
-        if(firstname==null|firstname.length()==0){
+        if (firstname == null | firstname.length() == 0) {
             emptyFirstname.setVisible(true);
-            firstname=null;
-        }else {
-            if(emptyFirstname.isVisible())
+            firstname = null;
+        } else {
+            if (emptyFirstname.isVisible())
                 emptyFirstname.setVisible(false);
         }
-        if(lastname==null|lastname.length()==0){
+        if (lastname == null | lastname.length() == 0) {
             emptyLastname.setVisible(true);
-            lastname=null;
-        }else {
-            if(emptyLastname.isVisible())
+            lastname = null;
+        } else {
+            if (emptyLastname.isVisible())
                 emptyLastname.setVisible(false);
         }
-        if(email==null|email.length()==0){
+        if (email == null | email.length() == 0) {
             emptyEmail.setVisible(true);
-            email=null;
-        }else {
-            if(emptyEmail.isVisible())
+            email = null;
+        } else {
+            if (emptyEmail.isVisible())
                 emptyEmail.setVisible(false);
         }
-        if(Question==null|Question.length()==0){
+        if (Question == null | Question.length() == 0) {
             emptyQuestion.setVisible(true);
-            Question=null;
-        }else if(emptyQuestion.isVisible())
+            Question = null;
+        } else if (emptyQuestion.isVisible())
             emptyQuestion.setVisible(false);
 
-        if (Username!=null&&firstname!=null&&lastname!=null&&email!=null&&Password!=null&&Question!=null) {
-            Account account = new Account(firstname, lastname, Username, Password, email,Question);
-            if (profileImage!=null)
-            account.setProfileImage(profileImage);
+        if (Username != null && firstname != null && lastname != null && email != null && Password != null && Question != null) {
+            Account account = new Account(firstname, lastname, Username, Password, email, Question);
+            if (profileImage != null)
+                account.setProfileImage(profileImage);
             if (ToServer.sendToServer(new SignUpMessage(account)).getValue()) {
                 mainPage.currentAccount = account;
                 try {

@@ -7,18 +7,21 @@ import main.Common.Post;
 
 import java.util.ArrayList;
 
-public class AnswerMessage implements Message{
+public class AnswerMessage implements Message {
     public static final long serialVersionUID = 62345678L;
     private boolean value;
     private Account account;
-    private ArrayList<Post>posts;
-    private ArrayList<OthersAccount>othersAccounts;
-    private ArrayList<Comment>comments;
+    private ArrayList<Post> posts;
+    private ArrayList<OthersAccount> othersAccounts;
+    private ArrayList<Comment> comments;
     private OthersAccount otherAccount;
     private String Password;
     private int Followers;
     private int likesNumber;
-    private  int repostNum;
+    private int repostNum;
+    private int CommentNumber;
+    private byte[] ProfileImage;
+
 
     public void setRepostNum(int repostNum) {
         this.repostNum = repostNum;
@@ -35,6 +38,7 @@ public class AnswerMessage implements Message{
     public int getLikesNumber() {
         return likesNumber;
     }
+
     public void setCommentNumber(int commentNumber) {
         CommentNumber = commentNumber;
     }
@@ -43,26 +47,21 @@ public class AnswerMessage implements Message{
         return CommentNumber;
     }
 
-    private int CommentNumber;
-
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
-    }
-
-    public void setOtherAccount(OthersAccount otherAccount) {
-        this.otherAccount = otherAccount;
     }
 
     public ArrayList<Comment> getComments() {
         return comments;
     }
 
+    public void setOtherAccount(OthersAccount otherAccount) {
+        this.otherAccount = otherAccount;
+    }
+
     public OthersAccount getOtherAccount() {
         return otherAccount;
     }
-
-
-    private byte[] ProfileImage;
 
     public void setProfileImage(byte[] profileImage) {
         ProfileImage = profileImage;
@@ -76,16 +75,16 @@ public class AnswerMessage implements Message{
         this.account = account;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
     public ArrayList<OthersAccount> getOthersAccounts() {
         return othersAccounts;
     }
 
     public void setOthersAccounts(ArrayList<OthersAccount> othersAccounts) {
         this.othersAccounts = othersAccounts;
-    }
-
-    public Account getAccount() {
-        return account;
     }
 
     public void setValue(boolean value) {
@@ -120,6 +119,4 @@ public class AnswerMessage implements Message{
         return Password;
     }
 
-    public void Handle() {
-    }
 }

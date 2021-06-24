@@ -26,14 +26,12 @@ public class newPostController {
     public TextArea caption;
     public ImageView PostImage;
     public Label DuplicateTitle;
-    private String decription;
-    private String Posttitle;
-    private  byte[] image;
+    private byte[] image;
     private Post post;
 
     public void Share(ActionEvent actionEvent) {
-        post=new Post(title.getText(), mainPage.currentAccount.getUsername(),caption.getText());
-        if(!mainPage.currentAccount.getMyPosts().stream().map(a->a.getTitle()).collect(Collectors.toList()).contains(title.getText())){
+        post = new Post(title.getText(), mainPage.currentAccount.getUsername(), caption.getText());
+        if (!mainPage.currentAccount.getMyPosts().stream().map(a -> a.getTitle()).collect(Collectors.toList()).contains(title.getText())) {
             post.setPostImage(image);
             post.setWriterImage(mainPage.currentAccount.getProfileImage());
             mainPage.currentAccount.NewPost(post);
@@ -44,8 +42,7 @@ public class newPostController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else
+        } else
             DuplicateTitle.setVisible(true);
     }
 
@@ -60,7 +57,7 @@ public class newPostController {
             FileChooser fileChooser = new FileChooser();
             File file = fileChooser.showOpenDialog(new Popup());
             FileInputStream fileInputStream = new FileInputStream(file);
-            image=fileInputStream.readAllBytes();
+            image = fileInputStream.readAllBytes();
             Image image1 = new Image(new ByteArrayInputStream(image));
             PostImage.setImage(image1);
         } catch (IOException e) {

@@ -21,14 +21,15 @@ public class LoginMessage implements Message {
         Username = username;
         Password = password;
     }
-    public boolean CheckPassword(Map<String, Account> profileMap){
-        if(profileMap.size()==0)
+
+    public boolean CheckPassword(Map<String, Account> profileMap) {
+        if (profileMap.size() == 0)
             return false;
 
         else return profileMap.get(Username).getPassword().equals(Password);
     }
 
     public Account Handle(Map<String, Account> profileMap) {
-            return profileMap.get(Username);
+        return profileMap.get(Username);
     }
 }

@@ -29,7 +29,6 @@ public class Server {
                 Socket ClientSocket=serverSocket.accept();
                 ClientHandler clientHandler=new ClientHandler(ClientSocket,usersCount);
                 new Thread(clientHandler).start();
-                System.out.println("Client: "+usersCount+" connected.");
                 usersCount.incrementAndGet();
             } catch (IOException e) {
                 System.out.println("main.Client Connection faild");

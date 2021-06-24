@@ -5,7 +5,7 @@ import main.Common.Post;
 
 import java.util.Map;
 
-public class getLikesMessage implements Message{
+public class getLikesMessage implements Message {
     private String PostTitle;
     private String WriterUsername;
 
@@ -13,9 +13,10 @@ public class getLikesMessage implements Message{
         PostTitle = postTitle;
         WriterUsername = writerUsername;
     }
-    public int Handle(Map<String, Account>map){
-        for (Post post:map.get(WriterUsername).getMyPosts()){
-            if(post.getTitle().equals(PostTitle)){
+
+    public int Handle(Map<String, Account> map) {
+        for (Post post : map.get(WriterUsername).getMyPosts()) {
+            if (post.getTitle().equals(PostTitle)) {
                 return post.getLike().getNumberOfLikes();
             }
         }

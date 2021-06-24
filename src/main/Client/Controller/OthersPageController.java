@@ -18,8 +18,6 @@ import main.Common.Post;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class OthersPageController {
@@ -36,21 +34,22 @@ public class OthersPageController {
     public ImageView ProfileImage2;
     public JFXListView PostList2;
     public Label location2;
-    ArrayList<Post>posts;
+    ArrayList<Post> posts;
+
     public void initialize() {
-        posts=PostDetailsController.CurrentOtherAccount.getPosts();
+        posts = PostDetailsController.CurrentOtherAccount.getPosts();
         posts.sort(new Comparator<Post>() {
             @Override
             public int compare(Post o1, Post o2) {
-                return (int)(o1.getMiliTime()-o2.getMiliTime());
+                return (int) (o1.getMiliTime() - o2.getMiliTime());
             }
         });
-        if(PostDetailsController.CurrentOtherAccount.getProfileImage()!=null) {
+        if (PostDetailsController.CurrentOtherAccount.getProfileImage() != null) {
             ProfileImage2.setImage(new Image(new ByteArrayInputStream(PostDetailsController.CurrentOtherAccount.getProfileImage())));
             ProfileImage2.setVisible(true);
             defaultProfileImage1.setVisible(false);
         }
-        if(mainPage.currentAccount.getFollowing().contains(PostDetailsController.CurrentOtherAccount)){
+        if (mainPage.currentAccount.getFollowing().contains(PostDetailsController.CurrentOtherAccount)) {
             FollowButton.setVisible(false);
             FollowingButton.setVisible(true);
         }
@@ -62,10 +61,10 @@ public class OthersPageController {
         temp = String.valueOf(PostDetailsController.CurrentOtherAccount.getFollowing().size());
         Following.setText(temp);
         Posts.setText(String.valueOf(PostDetailsController.CurrentOtherAccount.getPosts().size()));
-        if (PostDetailsController.CurrentOtherAccount.getLocation()!= null)
+        if (PostDetailsController.CurrentOtherAccount.getLocation() != null)
             location2.setText(PostDetailsController.CurrentOtherAccount.getLocation());
         else location2.setText("");
-        if (PostDetailsController.CurrentOtherAccount.getBio()!= null)
+        if (PostDetailsController.CurrentOtherAccount.getBio() != null)
             bio.setText(PostDetailsController.CurrentOtherAccount.getBio());
         else bio.setText("");
         PostList2.setItems(FXCollections.observableArrayList(posts));
@@ -82,14 +81,15 @@ public class OthersPageController {
     }
 
     public void Follow(ActionEvent actionEvent) {
-        ToServer.sendToServer(new FollowMessage(mainPage.currentAccount.getUsername(),PostDetailsController.CurrentOtherAccount.getUsername()));
+        ToServer.sendToServer(new FollowMessage(mainPage.currentAccount.getUsername(), PostDetailsController.CurrentOtherAccount.getUsername()));
         mainPage.currentAccount.Follow(PostDetailsController.CurrentOtherAccount);
         FollowButton.setVisible(false);
         FollowingButton.setVisible(true);
     }
 
     public void Unfollow(ActionEvent actionEvent) {
-        ToServer.sendToServer(new UnfollowMessage(mainPage.currentAccount.getUsername(),PostDetailsController.CurrentOtherAccount.getUsername()));
+        System.out.println("unfollow");
+        ToServer.sendToServer(new UnfollowMessage(mainPage.currentAccount.getUsername(), PostDetailsController.CurrentOtherAccount.getUsername()));
         mainPage.currentAccount.Unfollow(PostDetailsController.CurrentOtherAccount);
         FollowButton.setVisible(true);
         FollowingButton.setVisible(false);

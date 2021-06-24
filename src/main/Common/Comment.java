@@ -14,14 +14,6 @@ public class Comment implements Serializable {
         return MiliTime;
     }
 
-    public void setWriterUsername(String writerUsername) {
-        WriterUsername = writerUsername;
-    }
-
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
-    }
-
     public void setDateAndTime(String dateAndTime) {
         DateAndTime = dateAndTime;
     }
@@ -34,8 +26,8 @@ public class Comment implements Serializable {
     private Long MiliTime;
 
     public Comment(String writerUsername, String descriptions) {
-        DateAndTime=DateTime.getTime();
-        MiliTime=DateTime.getMilli();
+        DateAndTime = DateTime.getTime();
+        MiliTime = DateTime.getMilli();
         WriterUsername = writerUsername;
         this.descriptions = descriptions;
     }

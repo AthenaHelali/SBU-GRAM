@@ -1,7 +1,5 @@
 package main.Common;
 
-import main.Common.Message.Message;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,7 +70,7 @@ public class OthersAccount implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OthersAccount that = (OthersAccount) o;
-        return Objects.equals(Username, that.Username) ;
+        return Objects.equals(Username, that.Username);
     }
 
     @Override

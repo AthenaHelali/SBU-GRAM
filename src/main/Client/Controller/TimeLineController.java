@@ -2,7 +2,6 @@ package main.Client.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,15 +22,15 @@ public class TimeLineController {
     public ImageView ProfileImage;
     public Label Username;
     public ImageView defultProfileImage;
-    private ArrayList<Post> posts=new ArrayList<>();
+    private ArrayList<Post> posts = new ArrayList<>();
 
     @FXML
     public void initialize() {
-        posts=ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
+        posts = ToServer.sendToServer(new timelinePostsMessage(mainPage.currentAccount.getUsername())).getPosts();
         posts.sort(new Comparator<Post>() {
             @Override
             public int compare(Post o1, Post o2) {
-                return (int)(o2.getMiliTime()-o1.getMiliTime());
+                return (int) (o2.getMiliTime() - o1.getMiliTime());
             }
         });
         if (mainPage.currentAccount.getProfileImage() != null) {

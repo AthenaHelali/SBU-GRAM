@@ -3,7 +3,6 @@ package main.Client.Controller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import main.Client.ToServer;
 import main.Client.model.PageLoader;
 import main.Client.model.mainPage;
-import main.Common.Message.GetMyAccountMessage;
 import main.Common.Message.MyPostsMessage;
 import main.Common.Message.getFollowersNumberMessage;
 import main.Common.Post;
@@ -20,7 +18,6 @@ import main.Common.Post;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class pageController {
