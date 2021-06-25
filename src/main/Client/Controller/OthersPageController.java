@@ -41,7 +41,7 @@ public class OthersPageController {
         posts.sort(new Comparator<Post>() {
             @Override
             public int compare(Post o1, Post o2) {
-                return (int) (o1.getMiliTime() - o2.getMiliTime());
+                return (int) (o2.getMiliTime() - o1.getMiliTime());
             }
         });
         if (PostDetailsController.CurrentOtherAccount.getProfileImage() != null) {
