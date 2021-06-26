@@ -58,7 +58,7 @@ public class ClientHandler implements Runnable {
                     OutPut.reset();
                     username=signUpMessage.getProfile().getUsername();
                     DataBase.getDataBase().SaveProfile(signUpMessage.getProfile());
-                    System.out.println( signUpMessage.getProfile().getUsername() + " rgister [account image addres(todo)]");
+                    System.out.println( signUpMessage.getProfile().getUsername() + " rgister");
                     System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof LikeMessage) {
                     answerMessage = new AnswerMessage();
@@ -77,7 +77,7 @@ public class ClientHandler implements Runnable {
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
                     System.out.println(username+" publish");
-                    System.out.println(newPostMessage.getNewPost().getTitle()+" "+"[ file address/todo] "+username);
+                    System.out.println(newPostMessage.getNewPost().getTitle()+" "+username);
                     System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof LogOutMessage) {
                     IsOnline = false;
@@ -85,7 +85,7 @@ public class ClientHandler implements Runnable {
                     answerMessage.setValue(true);
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
-                    System.out.println(username+ "logout");
+                    System.out.println(username+ " logout");
                     System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof UpdateProfileMessage) {
                     answerMessage = new AnswerMessage();
@@ -96,7 +96,6 @@ public class ClientHandler implements Runnable {
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
                     System.out.println(username+" update info");
-                    System.out.println("[profile image address todo]");
                     System.out.println( DateTime.getTime());
                 } else if (receivedMessage instanceof GetAllProfilesMessage) {
                     answerMessage = new AnswerMessage();
@@ -151,7 +150,7 @@ public class ClientHandler implements Runnable {
                     OutPut.writeObject(answerMessage);
                     OutPut.reset();
                     System.out.println(username+" get info "+accountbyeUsernameMessage.getUsername());
-                    System.out.println(accountbyeUsernameMessage.getUsername()+" [profile image address todo]");
+                    System.out.println(accountbyeUsernameMessage.getUsername());
                     System.out.println(DateTime.getTime());
                 } else if (receivedMessage instanceof MyPostsMessage) {
                     answerMessage = new AnswerMessage();

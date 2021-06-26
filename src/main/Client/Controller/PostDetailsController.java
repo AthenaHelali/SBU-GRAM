@@ -79,6 +79,8 @@ public class PostDetailsController {
             PostItemController.CurrentPost.setRepostNum(PostItemController.CurrentPost.getRepostNum() + 1);
             mainPage.currentAccount.addMyPosts(PostItemController.CurrentPost);
             ToServer.sendToServer(new repostMessage(PostItemController.CurrentPost.getTitle(), PostItemController.CurrentPost.getWriterUsername(), mainPage.currentAccount.getUsername()));
+            repostsNumber.setText(String.valueOf(ToServer.sendToServer(new GetRepostNumberMessage
+                    (PostItemController.CurrentPost.getTitle(), PostItemController.CurrentPost.getWriterUsername())).getRepostNum()));
         }
     }
 

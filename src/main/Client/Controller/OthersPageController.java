@@ -50,9 +50,9 @@ public class OthersPageController {
             ProfileImage2.setVisible(true);
             defaultProfileImage1.setVisible(false);
         }
-        if (mainPage.currentAccount.getFollowing().contains(PostDetailsController.CurrentOtherAccount)) {
-            FollowButton.setVisible(false);
-            FollowingButton.setVisible(true);
+        if (!mainPage.currentAccount.getFollowing().contains(PostDetailsController.CurrentOtherAccount)) {
+            FollowButton.setVisible(true);
+            FollowingButton.setVisible(false);
         }
         Username1.setText(PostDetailsController.CurrentOtherAccount.getUsername());
         firstname.setText(PostDetailsController.CurrentOtherAccount.getFirstName());
